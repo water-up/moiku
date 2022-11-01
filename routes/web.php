@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::view('/student/login', 'student/login');
+Route::post('/student/login', [App\Http\Controllers\student\LoginController::class, 'login']);
+Route::view('/student/register', 'student/register');
+Route::post('/student/register', [App\Http\Controllers\student\RegisterController::class, 'register']);
+Route::view('/student/home', 'student/home')->middleware('auth:student');

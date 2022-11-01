@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class UserSeeder extends Seeder
+class StudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,19 +16,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
+        DB::table('students')->insert(
             [
                 [
-                    'name' => 'user1',
-                    'email' => 'user1@example.com',
+                    'name' => 'student1',
+                    'email' => 'student1@example.com',
                     'password' => \Hash::make('hogehoge'),
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
                 ],
                 
                 [
-                    'name' => 'user2',
-                    'email' => 'user2@example.com',
+                    'name' => 'student2',
+                    'email' => 'student2@example.com',
                     'password' => \Hash::make('hogehoge'),
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
