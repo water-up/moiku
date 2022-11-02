@@ -16,6 +16,19 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(StudentSeeder::class);
+        $this->call(TeacherSeeder::class);
+        $this->call(Primary_categorySeeder::class);
+        $this->call(PrefectureSeeder::class);
+        $this->call(Secondary_categorySeeder::class);
+        $this->call(Secondary_category_studentSeeder::class);
+        $this->call(Secondary_category_teacherSeeder::class);
+        $this->call(Student_articleSeeder::class);
+        $this->call(Student_goodSeeder::class);
+        $this->call(Teacher_goodSeeder::class);
+        $this->call(Teacher_reactionSeeder::class);
+        $this->call(Teacher_articleSeeder::class);
+        $this->call(Student_teacher_articleSeeder::class);
+        $this->call(ReviewSeeder::class);
         
         // \App\Models\User::factory(10)->create();
 
