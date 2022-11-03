@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher_reaction extends Model
+class Secondary_category_teacher extends Model
 {
     /************************************************************
     親テーブルとのリレーション
@@ -20,10 +20,11 @@ class Teacher_reaction extends Model
         return $this->belongsTo('App\Models\Teacher');
     }
     
-    public function student_article()
+    public function secondary_category()
     {
-        return $this->belongsTo('App\Models\Student_article');
+        return $this->belongsTo('App\Models\Secondary_category');
     }
+    
     //ここにリレーションを追加
     
     
