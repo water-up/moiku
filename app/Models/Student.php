@@ -8,6 +8,58 @@ use Illuminate\Notifications\Notifiable;
 
 class Student extends User
 {
+    /************************************************************
+    親テーブルとのリレーション
+    
+    public function aaaaa()
+    {
+        return $this->belongsTo('App\Models\Aaaa');
+    }
+    ******************************/
+    //ここにリレーションを追加
+    
+    
+    
+    
+    
+    /************************************************************
+    子テーブルとのリレーション
+    
+    public function aaaaa()
+    {
+        return $this->hasMany('App\Models\Aaaaa');
+    }
+    ******************************/
+    public function secondary_category_student()
+    {
+        return $this->hasMany('App\Models\Secondary_category_student');
+    }
+    
+    public function student_article()
+    {
+        return $this->hasMany('App\Models\Student_article');
+    }
+    
+    public function student_good()
+    {
+        return $this->hasMany('App\Models\Student_good');
+    }
+    
+    public function review()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+    
+    public function student_teacher_article()
+    {
+        return $this->hasMany('App\Models\Student_teacher_article');
+    }
+    
+    //ここにリレーションを追加
+    
+    
+    
+    //認証についての設定
     use HasFactory, Notifiable;
 
     /**
