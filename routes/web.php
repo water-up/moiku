@@ -30,3 +30,6 @@ Route::post('/teacher/login', [App\Http\Controllers\teacher\LoginController::cla
 Route::view('/teacher/register', 'teacher/register');
 Route::post('/teacher/register', [App\Http\Controllers\teacher\RegisterController::class, 'register']);
 Route::view('/teacher/home', 'teacher/home')->middleware('auth:teacher');
+
+Route::view('/student/mypage/log', 'student/mypage/log')->middleware('auth:student');
+Route::view('/teacher/mypage/log', 'teacher/mypage/log')->middleware('auth:teacher');

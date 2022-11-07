@@ -29,6 +29,7 @@
                         {{ config('app.name', 'Laravel') }}
                 </a>
                 @endguest
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,11 +57,17 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <p>教え隊でログイン中</p>
+                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href='/teacher/mypage/log' >
+                                        マイページへ
+                                    </a>
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -77,6 +84,10 @@
                 </div>
             </div>
         </nav>
+        
+        <div>
+            @yield('nav')
+        </div>
 
         <main class="py-4">
             @yield('content')
