@@ -25,7 +25,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 @else
-                <a class="navbar-brand" href="{{ url('student/home') }}">
+                <a class="navbar-brand" href="{{ url('teacher/home') }}">
                         {{ config('app.name', 'Laravel') }}
                 </a>
                 @endguest
@@ -45,13 +45,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('student/login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ url('teacher/login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('student/register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ url('teacher/register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
