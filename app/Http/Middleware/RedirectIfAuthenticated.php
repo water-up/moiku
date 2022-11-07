@@ -24,7 +24,10 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if($guard == "student" && Auth::guard($guard)->check()) {   //追記
                 return redirect('student/home');                        //追記
-            } 
+            }                                                           //追記
+            if($guard == "teacher" && Auth::guard($guard)->check()) {   //追記
+                return redirect('teacher/home');                        //追記
+            }                                                           //追記
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }
