@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(TeacherSeeder::class);
         $this->call(Primary_categorySeeder::class);
+        $this->call(RegionSeeder::class);
         $this->call(PrefectureSeeder::class);
         $this->call(Secondary_categorySeeder::class);
         $this->call(Secondary_category_studentSeeder::class);
