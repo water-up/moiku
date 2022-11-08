@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
+use Database\Factories\TeacherFactory;
 
 class Teacher extends User
 {
@@ -53,10 +54,15 @@ class Teacher extends User
     
     
     
+    use HasFactory, Notifiable;
+    
+    protected static function newFactory()
+    {
+        return TeacherFactory::new(); // ← 対象のFactoryを指定する
+    }
+    
     
     //認証についての設定
-    use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *

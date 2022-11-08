@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Teacher_article;
 use DateTime;
 
 class Teacher_articleSeeder extends Seeder
@@ -39,5 +40,7 @@ class Teacher_articleSeeder extends Seeder
                 //ここに追加できます
             ]
         );
+        
+        Teacher_article::factory(30)->create();
     }
 }

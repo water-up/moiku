@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prefecture extends Model
+class Region extends Model
 {
     /************************************************************
     親テーブルとのリレーション
@@ -15,11 +15,6 @@ class Prefecture extends Model
         return $this->belongsTo('App\Models\Aaaa');
     }
     ******************************/
-    public function region()
-    {
-        return $this->belongsTo('App\Models\Region');
-    }
-    
     //ここにリレーションを追加
     
     
@@ -34,14 +29,9 @@ class Prefecture extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function teacher_article()
+    public function prefecture()
     {
-        return $this->hasMany('App\Models\Teacher_article');
-    }
-    
-    public function student_article()
-    {
-        return $this->hasMany('App\Models\Student_article');
+        return $this->hasMany('App\Models\Prefecture');
     }
     
     //ここにリレーションを追加

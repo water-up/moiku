@@ -4,9 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\Student_articleFactory;
 
 class Student_article extends Model
 {
+    use HasFactory;
+    
+    protected static function newFactory()
+    {
+        return Student_articleFactory::new(); // ← 対象のFactoryを指定する
+    }
+    
     /************************************************************
     親テーブルとのリレーション
     
@@ -70,5 +78,4 @@ class Student_article extends Model
     }
     
     //ここにリレーションを追加
-    
 }
