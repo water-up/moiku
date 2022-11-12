@@ -31,24 +31,24 @@ class Teacher extends User
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function secondary_category_teacher()
+    public function secondary_categories()
     {
-        return $this->hasMany('App\Models\Secondary_category_teacher');
+        return $this->belongsToMany(Secondary_category::class);
     }
     
-    public function teacher_article()
+    public function teacher_articles()
     {
-        return $this->hasMany('App\Models\Teacher_article');
+        return $this->hasMany(Teacher_article::class);
     }
     
-    public function teacher_good()
+    public function teacher_goods()
     {
-        return $this->hasMany('App\Models\Teacher_good');
+        return $this->hasMany(Teacher_good::class);
     }
     
-    public function teacher_reaction()
+    public function teacher_reactions()
     {
-        return $this->hasMany('App\Models\Teacher_reaction');
+        return $this->hasMany(Teacher_reaction::class);
     }
     //ここにリレーションを追加
     

@@ -17,12 +17,12 @@ class Review extends Model
     ******************************/
     public function student()
     {
-        return $this->belongsTo('App\Models\Student');
+        return $this->belongsTo(Student::class);
     }
     
     public function teacher_article()
     {
-        return $this->belongsTo('App\Models\Teacher_article');
+        return $this->belongsTo(Teacher_article::class);
     }
     
     //ここにリレーションを追加

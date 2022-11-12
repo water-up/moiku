@@ -25,17 +25,17 @@ class Student_article extends Model
     ******************************/
     public function student()
     {
-        return $this->belongsTo('App\Models\Student');
+        return $this->belongsTo(Student::class);
     }
     
     public function prefecture()
     {
-        return $this->belongsTo('App\Models\Prefecture');
+        return $this->belongsTo(Prefecture::class);
     }
     
     public function secondary_category()
     {
-        return $this->belongsTo('App\Models\Secondary_category');
+        return $this->belongsTo(Secondary_category::class);
     }
     
     //ここにリレーションを追加
@@ -52,29 +52,29 @@ class Student_article extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function student_good()
+    public function student_goods()
     {
-        return $this->hasMany('App\Models\Student_good');
+        return $this->hasMany(Student_good::class);
     }
     
-    public function teacher_good()
+    public function teacher_goods()
     {
-        return $this->hasMany('App\Models\Teacher_good');
+        return $this->hasMany(Teacher_good::class);
     }
     
-    public function teacher_reaction()
+    public function teacher_reactions()
     {
-        return $this->hasMany('App\Models\Teacher_reaction');
+        return $this->hasMany(Teacher_reaction::class);
     }
     
     public function teacher()
     {
-        return $this->hasOne('App\Models\Teacher');
+        return $this->hasOne(Teacher::class);
     }
     
     public function teacher_article()
     {
-        return $this->hasOne('App\Models\Teacher_article');
+        return $this->hasOne(Teacher_article::class);
     }
     
     //ここにリレーションを追加

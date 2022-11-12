@@ -17,12 +17,12 @@ class Teacher_reaction extends Model
     ******************************/
     public function teacher()
     {
-        return $this->belongsTo('App\Models\Teacher');
+        return $this->belongsTo(Teacher::class);
     }
     
     public function student_article()
     {
-        return $this->belongsTo('App\Models\Student_article');
+        return $this->belongsTo(Student_article::class);
     }
     //ここにリレーションを追加
     

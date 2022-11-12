@@ -1,4 +1,4 @@
-@extends('sides.student_mypage')
+@extends('sides.teacher_mypage')
 
 @section('content')
     <h1 class="title">
@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="footer">
-        <a href="/mypage/student/log">戻る</a>
+        <a href="/mypage/teacher/log">戻る</a>
     </div>
 @endsection

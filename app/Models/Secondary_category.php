@@ -17,7 +17,7 @@ class Secondary_category extends Model
     ******************************/
     public function primary_caregory()
     {
-        return $this->belongsTo('App\Models\Primary_caregory');
+        return $this->belongsTo(Primary_caregory::class);
     }
     
     //ここにリレーションを追加
@@ -34,19 +34,19 @@ class Secondary_category extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function student_article()
+    public function student_articles()
     {
-        return $this->hasMany('App\Models\Student_article');
+        return $this->hasMany(Student_article::class);
     }
     
-    public function secondary_category_student()
+    public function students()
     {
-        return $this->hasMany('App\Models\Secondary_category_student');
+        return $this->belongsToMany(Student::class);
     }
     
-    public function secondary_category_teacher()
+    public function teachers()
     {
-        return $this->hasMany('App\Models\Secondary_category_teacher');
+        return $this->belongsToMany(Teacher::class);
     }
     
     //ここにリレーションを追加
