@@ -9,6 +9,14 @@ use Database\Factories\StudentFactory;
 
 class Student extends User
 {
+    use HasFactory, Notifiable;
+    
+    protected static function newFactory()
+    {
+        return StudentFactory::new(); // ← 対象のFactoryを指定する
+    }
+    
+    
     /************************************************************
     親テーブルとのリレーション
     
@@ -31,41 +39,32 @@ class Student extends User
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function secondary_category_student()
+    public function secondary_categories()
     {
-        return $this->hasMany('App\Models\Secondary_category_student');
+        return $this->belongsToMany(Secondary_category::class);
     }
     
-    public function student_article()
+    public function teacher_articles()
     {
-        return $this->hasMany('App\Models\Student_article');
+        return $this->belongsToMany(Teacher_article::class);
     }
     
-    public function student_good()
+    public function student_articles()
     {
-        return $this->hasMany('App\Models\Student_good');
+        return $this->hasMany(Student_article::class);
     }
     
-    public function review()
+    public function student_goods()
     {
-        return $this->hasMany('App\Models\Review');
+        return $this->hasMany(Student_good::class);
     }
     
-    public function student_teacher_article()
+    public function reviews()
     {
-        return $this->hasMany('App\Models\Student_teacher_article');
+        return $this->hasMany(Review::class);
     }
     
     //ここにリレーションを追加
-    
-    
-    
-    use HasFactory, Notifiable;
-    
-    protected static function newFactory()
-    {
-        return StudentFactory::new(); // ← 対象のFactoryを指定する
-    }
     
     
     //認証についての設定

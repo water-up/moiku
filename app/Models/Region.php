@@ -29,9 +29,9 @@ class Region extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function prefecture()
+    public function prefectures()
     {
-        return $this->hasMany('App\Models\Prefecture');
+        return $this->hasMany(Prefecture::class);
     }
     
     //ここにリレーションを追加

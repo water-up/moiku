@@ -29,9 +29,9 @@ class Primary_caregory extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function secondary_category()
+    public function secondary_categories()
     {
-        return $this->hasMany('App\Models\Secondary_category');
+        return $this->hasMany(Secondary_category::class);
     }
     
     //ここにリレーションを追加

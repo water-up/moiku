@@ -17,12 +17,12 @@ class Student_good extends Model
     ******************************/
     public function student()
     {
-        return $this->belongsTo('App\Models\Student');
+        return $this->belongsTo(Student::class);
     }
     
     public function student_article()
     {
-        return $this->belongsTo('App\Models\Student_article');
+        return $this->belongsTo(Student_article::class);
     }
     
     //ここにリレーションを追加

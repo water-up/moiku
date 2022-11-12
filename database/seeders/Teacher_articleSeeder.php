@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Teacher_article;
+use App\Models\Student;
 use DateTime;
 
 class Teacher_articleSeeder extends Seeder
@@ -22,7 +23,7 @@ class Teacher_articleSeeder extends Seeder
                 [
                     'teacher_id' => '1',
                     'student_article_id' => '1',
-                    'prefecture_id' => '4',
+                    'prefecture_id' => '14',
                     'title' => 'ボルダリングの基礎教えます',
                     'place' => '横浜',
                     'fee' => '2000',
@@ -41,6 +42,13 @@ class Teacher_articleSeeder extends Seeder
             ]
         );
         
-        Teacher_article::factory(30)->create();
+        $students = Student::all();
+        
+        Teacher_article::factory(30)->create()
+        ->each(function ($teacher_article) use ($students) {
+            $teacher_article->students()->attach(
+                $students->random(rand(3,5))->pluck('id')->toArray() // 1～3個のproductをorderにランダムに紐づけ
+            );
+        });
     }
 }

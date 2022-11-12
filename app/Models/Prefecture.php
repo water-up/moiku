@@ -17,7 +17,7 @@ class Prefecture extends Model
     ******************************/
     public function region()
     {
-        return $this->belongsTo('App\Models\Region');
+        return $this->belongsTo(Region::class);
     }
     
     //ここにリレーションを追加
@@ -34,14 +34,14 @@ class Prefecture extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function teacher_article()
+    public function teacher_articles()
     {
-        return $this->hasMany('App\Models\Teacher_article');
+        return $this->hasMany(Teacher_article::class);
     }
     
-    public function student_article()
+    public function student_articles()
     {
-        return $this->hasMany('App\Models\Student_article');
+        return $this->hasMany(Student_article::class);
     }
     
     //ここにリレーションを追加

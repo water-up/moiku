@@ -4,40 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\Student_teacher_articleFactory;
 
 class Student_teacher_article extends Model
 {
-    /************************************************************
-    親テーブルとのリレーション
+    use HasFactory;
     
-    public function aaaaa()
+    protected static function newFactory()
     {
-        return $this->belongsTo('App\Models\Aaaa');
+        return Student_teacher_articleFactory::new(); // ← 対象のFactoryを指定する
     }
-    ******************************/
-    public function student()
-    {
-        return $this->belongsTo('App\Models\Student');
-    }
-    
-    public function teacher_article()
-    {
-        return $this->belongsTo('App\Models\Teacher_article');
-    }
-    
-    //ここにリレーションを追加
-    
-    
-    
-    
-    
-    /************************************************************
-    子テーブルとのリレーション
-    
-    public function aaaaa()
-    {
-        return $this->hasMany('App\Models\Aaaaa');
-    }
-    ******************************/
-    //ここにリレーションを追加
 }
