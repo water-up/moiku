@@ -1,4 +1,4 @@
-@extends('layouts.student')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     
-                    <p>{{ Auth::user()->name }} さん、こんにちわ！</p>
+                    <p>{{ Auth::user()->name }} さん、こんにちは！</p>
                 </div>
             </div>
         </div>

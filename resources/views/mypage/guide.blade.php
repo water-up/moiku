@@ -1,4 +1,4 @@
-@extends('sides.teacher_mypage')
+@extends('layouts.navi')
 
 @section('content')
     
@@ -6,7 +6,4 @@
     
     <h3 align="center">Moikuの使い方</h3>
     
-    <div class="footer">
-        <a href="/mypage/teacher/log">戻る</a>
-    </div>
 @endsection

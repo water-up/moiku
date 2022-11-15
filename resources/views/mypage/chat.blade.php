@@ -1,4 +1,4 @@
-@extends('sides.student_mypage')
+@extends('layouts.navi')
 
 @section('content')
     

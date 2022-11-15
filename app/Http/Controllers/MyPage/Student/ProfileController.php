@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function showProfile(Student $student)
     {
-        return view('mypage/student/profile')
+        return view('mypage/profile')
         ->with(['student' => $student]);
     }
 }
