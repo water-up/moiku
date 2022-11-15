@@ -1,4 +1,4 @@
-@extends('layouts.navi')
+@extends('layouts.search')
 
 @section('content')
     <h1 class="title">
@@ -12,6 +12,6 @@
         <p class='body'>コメント：{{ $student_article->body }}</p>
     </h5>
     <div class="footer">
-        <a href="/mypage/student/log">戻る</a>
+        <a href="/article/student_article">戻る</a>
     </div>
 @endsection

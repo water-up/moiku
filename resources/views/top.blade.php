@@ -19,8 +19,12 @@
 <body>
     <img src="/images/icon.png">
     <h1>Moiku</h1>
-    <a href="/student/login">学び隊としてログイン</a>
-    <a href="/teacher/login">教え隊としてログイン</a>
-    
+    <h3>
+        <a href="/student/login">学び隊としてログイン</a>
+        <a href="/teacher/login">教え隊としてログイン</a>
+        <br><br>
+        <a href='/article/teacher_article'>学び隊募集掲示板へ</a>
+        <a href='/article/student_article'>教え隊募集掲示板へ</a>
+    </h3>
 </body>
 </html>

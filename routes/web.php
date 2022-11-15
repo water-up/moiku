@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//=====ログインページ==============================
+//=====ログインページ===========================================================
 //生徒
 Route::view('/student/login', 'student/login')->name('student.login');
 Route::post('/student/login', [App\Http\Controllers\student\LoginController::class, 'login']);
@@ -34,7 +34,7 @@ Route::post('/teacher/register', [App\Http\Controllers\teacher\RegisterControlle
 Route::view('/teacher/home', 'teacher/home')->middleware('auth:teacher');
 
 
-//=====マイページ==============================
+//=====マイページ===============================================================
 //-----授業管理------------------------------
 //生徒
 Route::get('/mypage/student/log', [App\Http\Controllers\MyPage\Student\LogController::class, 'showLog'])->middleware('auth:student');
@@ -47,33 +47,36 @@ Route::view('/mypage/teacher/log', 'mypage/teacher/log')->middleware('auth:teach
 
 //-----チャット------------------------------
 //生徒
-Route::view('/mypage/student/chat', 'mypage/student/chat')->middleware('auth:student');
-
+Route::view('/mypage/student/chat', 'mypage/chat')->middleware('auth:student');
 //先生
-Route::view('/mypage/teacher/chat', 'mypage/teacher/chat')->middleware('auth:student');
-
+Route::view('/mypage/teacher/chat', 'mypage/chat')->middleware('auth:teacher');
 
 //-----プロフィール------------------------------
 //生徒
 Route::get('/mypage/student/profile', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showProfile'])->middleware('auth:student');
-
 //先生
-Route::get('/mypage/teacher/profile', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showProfile'])->middleware('auth:student');
-
+Route::get('/mypage/teacher/profile', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showProfile'])->middleware('auth:teacher');
 
 //-----Moikuについて------------------------------
 //生徒
-Route::view('/mypage/student/guide', 'mypage/student/guide')->middleware('auth:student');
-
+Route::view('/mypage/student/guide', 'mypage/guide')->middleware('auth:student');
 //先生
-Route::view('/mypage/teacher/guide', 'mypage/teacher/guide')->middleware('auth:student');
+Route::view('/mypage/teacher/guide', 'mypage/guide')->middleware('auth:teacher');
 
+//=====掲示板ページ=============================================================
+//-----生徒の投稿（先生募集掲示板）------------------------------
+Route::get('/article/student_article', [App\Http\Controllers\Article\StudentArticleController::class, 'showList']);
+Route::get('/article/student_article/{student_article}', [App\Http\Controllers\Article\StudentArticleController::class, 'showDetail']);
 
+//-----先生の投稿（生徒募集掲示板）------------------------------
+Route::get('/article/teacher_article', [App\Http\Controllers\Article\TeacherArticleController::class, 'showList']);
+Route::get('/article/teacher_article/{teacher_article}', [App\Http\Controllers\Article\TeacherArticleController::class, 'showDetail']);
 
-
-
-
-//=====掲示板ページ==============================
 //生徒
+
+
 //先生
+
+
 //ゲスト
+
