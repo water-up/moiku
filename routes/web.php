@@ -54,8 +54,12 @@ Route::view('/mypage/teacher/chat', 'mypage/chat')->middleware('auth:teacher');
 //-----プロフィール------------------------------
 //生徒
 Route::get('/mypage/student/profile', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showProfile'])->middleware('auth:student');
+Route::get('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showEditProfile'])->middleware('auth:student');
+Route::put('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'editProfile'])->middleware('auth:student');
 //先生
 Route::get('/mypage/teacher/profile', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showProfile'])->middleware('auth:teacher');
+Route::get('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showEditProfile'])->middleware('auth:teacher');
+Route::put('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'editProfile'])->middleware('auth:teacher');
 
 //-----Moikuについて------------------------------
 //生徒
@@ -67,6 +71,8 @@ Route::view('/mypage/teacher/guide', 'mypage/guide')->middleware('auth:teacher')
 //-----生徒の投稿（先生募集掲示板）------------------------------
 Route::get('/article/student_article', [App\Http\Controllers\Article\StudentArticleController::class, 'showList']);
 Route::get('/article/student_article/{student_article}', [App\Http\Controllers\Article\StudentArticleController::class, 'showDetail']);
+Route::post('/article/student_article/{student_article}/student_good', [App\Http\Controllers\Article\StudentArticleController::class, 'studentGood'])->middleware('auth:student');
+Route::post('/article/student_article/{student_article}/teacher_good', [App\Http\Controllers\Article\StudentArticleController::class, 'teacherGood'])->middleware('auth:teacher');
 
 //-----先生の投稿（生徒募集掲示板）------------------------------
 Route::get('/article/teacher_article', [App\Http\Controllers\Article\TeacherArticleController::class, 'showList']);
