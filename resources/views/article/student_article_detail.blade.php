@@ -11,6 +11,20 @@
         <p class='desered_date'>日程：{{ $student_article->desered_date }}</p>
         <p class='body'>コメント：{{ $student_article->body }}</p>
     </h5>
+    
+    <h5 class='goods'>
+        <p class='goods'>いいね：{{ $goods }}</p>
+        
+        @if (Auth::guard('student')->check())
+            <form action="/article/student_article/{{ $student_article->id }}/student_good" method="POST">
+        @elseif (Auth::guard('teacher')->check())
+            <form action="/article/student_article/{{ $teacher_article->id }}/teacher_good" method="POST">
+        @endif
+        @csrf
+        
+        <input type="submit" value="いいねする"/>
+    </h5>
+    
     <div class="footer">
         <a href="/article/student_article">戻る</a>
     </div>

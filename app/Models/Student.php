@@ -77,6 +77,8 @@ class Student extends User
         'name',
         'email',
         'password',
+        'introducation',
+        'icon',
     ];
 
     /**

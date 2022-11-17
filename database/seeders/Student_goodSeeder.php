@@ -26,7 +26,7 @@ class Student_goodSeeder extends Seeder
                 ],
                 
                 [
-                    'student_id' => '1',
+                    'student_id' => '2',
                     'student_article_id' => '1',
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
