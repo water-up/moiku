@@ -28,7 +28,6 @@ return new class extends Migration
             $table->integer('max_number')->comment('最高参加人数');
             $table->time('time')->comment('授業時間');
             $table->text('body')->comment('本文');
-            $table->tinyInteger('status')->comment('ステータス');
             //ここにカラムを追加
             
             $table->timestamps();

@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('desered_fee')->comment('希望金額');
             $table->string('desered_date')->comment('希望日程');
             $table->text('body')->comment('本文');
-            $table->tinyInteger('status')->comment('ステータス');
             //ここにカラムを追加
             
             $table->timestamps();

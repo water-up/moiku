@@ -28,6 +28,11 @@ class Student_article extends Model
         return $this->belongsTo(Student::class);
     }
     
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+    
     public function prefecture()
     {
         return $this->belongsTo(Prefecture::class);
@@ -60,11 +65,6 @@ class Student_article extends Model
     public function teacher_reactions()
     {
         return $this->hasMany(Teacher_reaction::class);
-    }
-    
-    public function teacher()
-    {
-        return $this->hasOne(Teacher::class);
     }
     
     public function teacher_article()
