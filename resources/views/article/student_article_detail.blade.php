@@ -15,14 +15,20 @@
     <h5 class='goods'>
         <p class='goods'>いいね：{{ $goods }}</p>
         
-        @if (Auth::guard('student')->check())
-            <form action="/article/student_article/{{ $student_article->id }}/student_good" method="POST">
-        @elseif (Auth::guard('teacher')->check())
-            <form action="/article/student_article/{{ $teacher_article->id }}/teacher_good" method="POST">
+        @if ($check_good)  <!-- いいね済みの場合 -->
+            <input disabled type="submit" value="いいね済み"/>
+            
+        @else  <!-- いいねしていないの場合 -->
+            @if (Auth::guard('student')->check())
+                <form action="/article/student_article/{{ $student_article->id }}/student_good" method="POST">
+                    @csrf
+                <input type="submit" value="いいねする"/>
+            @elseif (Auth::guard('teacher')->check())
+                <form action="/article/student_article/{{ $teacher_article->id }}/teacher_good" method="POST">
+                    @csrf
+                <input type="submit" value="いいねする"/>
+            @endif
         @endif
-        @csrf
-        
-        <input type="submit" value="いいねする"/>
     </h5>
     
     <div class="footer">
