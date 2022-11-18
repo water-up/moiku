@@ -24,7 +24,7 @@
                     @csrf
                 <input type="submit" value="いいねする"/>
             @elseif (Auth::guard('teacher')->check())
-                <form action="/article/student_article/{{ $teacher_article->id }}/teacher_good" method="POST">
+                <form action="/article/student_article/{{ $student_article->id }}/teacher_good" method="POST">
                     @csrf
                 <input type="submit" value="いいねする"/>
             @endif

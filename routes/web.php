@@ -77,6 +77,8 @@ Route::post('/article/student_article/{student_article}/teacher_good', [App\Http
 //-----先生の投稿（生徒募集掲示板）------------------------------
 Route::get('/article/teacher_article', [App\Http\Controllers\Article\TeacherArticleController::class, 'showList']);
 Route::get('/article/teacher_article/{teacher_article}', [App\Http\Controllers\Article\TeacherArticleController::class, 'showDetail']);
+Route::post('/article/teacher_article/{teacher_article}/student_good', [App\Http\Controllers\Article\TeacherArticleController::class, 'studentGood'])->middleware('auth:student');
+Route::post('/article/teacher_article/{teacher_article}/teacher_good', [App\Http\Controllers\Article\TeacherArticleController::class, 'teacherGood'])->middleware('auth:teacher');
 
 //生徒
 

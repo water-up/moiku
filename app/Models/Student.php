@@ -54,9 +54,14 @@ class Student extends User
         return $this->hasMany(Student_article::class);
     }
     
-    public function student_goods()
+    public function student_article_goods()
     {
-        return $this->hasMany(Student_good::class);
+        return $this->hasMany(Student_article_good::class);
+    }
+    
+    public function teacher_article_goods()
+    {
+        return $this->hasMany(Teacher_article_good::class);
     }
     
     public function reviews()
