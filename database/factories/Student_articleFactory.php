@@ -30,7 +30,6 @@ class Student_articleFactory extends Factory
             'desered_fee' => '2000円くらい',
             'desered_date' => '12月の土日',
             'body' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
-            'status' => $this->faker->numberBetween($min = 1, $max = 5),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];

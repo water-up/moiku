@@ -32,7 +32,6 @@ class Teacher_articleSeeder extends Seeder
                     'max_number' => '5',
                     'time' => '3:30',
                     'body' => '初心者対象！\n基礎を重点的に教えます。',
-                    'status' => '1',
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
                 ],

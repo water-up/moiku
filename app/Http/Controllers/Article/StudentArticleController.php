@@ -13,7 +13,8 @@ class StudentArticleController extends Controller
     public function showList()
     {
         $student_articles = Student_article::get();
-            
+        
+        
         return view('article/student_article_list')
         ->with(['student_articles' => $student_articles]);
     }
@@ -35,9 +36,9 @@ class StudentArticleController extends Controller
         
         
         return view('article/student_article_detail')
-        ->with(['student_article' => $student_article])
-        ->with(['goods' => $goods])
-        ->with(['check_good' => $check_good]);
+        ->with(['student_article' => $student_article,
+                'goods' => $goods,
+                'check_good' => $check_good]);
         
         
         //return view('article/student_article_detail')

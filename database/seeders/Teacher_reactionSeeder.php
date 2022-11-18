@@ -31,6 +31,19 @@ class Teacher_reactionSeeder extends Seeder
                     'updated_at' => new DateTime(),
                 ],
                 
+                [
+                    'teacher_id' => '1',
+                    'student_article_id' => '2',
+                    
+                    'min_number' => '2',
+                    'max_number' => '5',
+                    'desered_time' => '3時間くらい',
+                    'desered_date' => '12/3,12/4,12/11のお昼頃から',
+                    'body' => '基礎って大事ですよね！褒めて伸ばします',
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ],
+                
                 
                 //ここに追加できます
             ]

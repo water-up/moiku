@@ -36,6 +36,11 @@ class Teacher extends User
         return $this->belongsToMany(Secondary_category::class);
     }
     
+    public function student_article()
+    {
+        return $this->hasMany(Student_article::class);
+    }
+    
     public function teacher_articles()
     {
         return $this->hasMany(Teacher_article::class);

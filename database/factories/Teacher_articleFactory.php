@@ -32,7 +32,6 @@ class Teacher_articleFactory extends Factory
             'max_number' => $this->faker->numberBetween($min = 6, $max = 10),
             'time' => '3:30',
             'body' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
-            'status' => $this->faker->numberBetween($min = 1, $max = 3),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
