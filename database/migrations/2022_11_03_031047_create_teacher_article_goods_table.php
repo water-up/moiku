@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_goods', function (Blueprint $table) {
+        Schema::create('teacher_article_goods', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('teacher_id')->constrained()->comment('外部キー');
-            $table->foreignId('student_article_id')->constrained()->comment('外部キー');
+            $table->foreignId('student_id')->nullable()->constrained()->comment('外部キー');
+            $table->foreignId('teacher_id')->nullable()->constrained()->comment('外部キー');
+            $table->foreignId('teacher_article_id')->constrained()->comment('外部キー');
             
             //ここにカラムを追加
             
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_goods');
+        Schema::dropIfExists('teacher_article_goods');
     }
 };

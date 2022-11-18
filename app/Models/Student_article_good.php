@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher_good extends Model
+class Student_article_good extends Model
 {
     /************************************************************
     親テーブルとのリレーション
@@ -15,6 +15,11 @@ class Teacher_good extends Model
         return $this->belongsTo('App\Models\Aaaa');
     }
     ******************************/
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+    
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

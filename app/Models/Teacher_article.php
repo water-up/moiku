@@ -52,6 +52,11 @@ class Teacher_article extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
+    public function teacher_article_goods()
+    {
+        return $this->hasMany(Teacher_article_good::class);
+    }
+    
     public function reviews()
     {
         return $this->hasMany(Review::class);

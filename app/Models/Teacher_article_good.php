@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student_good extends Model
+class Teacher_article_good extends Model
 {
     /************************************************************
     親テーブルとのリレーション
@@ -20,9 +20,14 @@ class Student_good extends Model
         return $this->belongsTo(Student::class);
     }
     
-    public function student_article()
+    public function teacher()
     {
-        return $this->belongsTo(Student_article::class);
+        return $this->belongsTo(Teacher::class);
+    }
+    
+    public function teacher_article()
+    {
+        return $this->belongsTo(Teacher_article::class);
     }
     
     //ここにリレーションを追加

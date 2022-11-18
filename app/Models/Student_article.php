@@ -52,14 +52,9 @@ class Student_article extends Model
         return $this->hasMany('App\Models\Aaaaa');
     }
     ******************************/
-    public function student_goods()
+    public function student_article_goods()
     {
-        return $this->hasMany(Student_good::class);
-    }
-    
-    public function teacher_goods()
-    {
-        return $this->hasMany(Teacher_good::class);
+        return $this->hasMany(Student_article_good::class);
     }
     
     public function teacher_reactions()

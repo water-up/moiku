@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class Student_goodSeeder extends Seeder
+class Teacher_article_goodSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,18 +16,28 @@ class Student_goodSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('student_goods')->insert(
+        DB::table('teacher_article_goods')->insert(
             [
                 [
                     'student_id' => '1',
-                    'student_article_id' => '1',
+                    'teacher_id' => null,
+                    'teacher_article_id' => '1',
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
                 ],
                 
                 [
                     'student_id' => '2',
-                    'student_article_id' => '1',
+                    'teacher_id' => null,
+                    'teacher_article_id' => '1',
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ],
+                
+                [
+                    'student_id' => null,
+                    'teacher_id' => '2',
+                    'teacher_article_id' => '1',
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
                 ],
