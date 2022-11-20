@@ -1,6 +1,8 @@
 @extends('layouts.search')
 
 @section('content')
+
+    <!-- teacher_articleの詳細（開始） -->
     <h1 class="title">
         {{ $teacher_article->title }}
     </h1>
@@ -14,7 +16,7 @@
     </h5>
     
     <h5 class='goods'>
-        <p class='goods'>いいね：{{ $goods }}</p>
+        <p class='goods'>いいね：{{ $teacher_article->teacher_article_goods()->count() }}</p>
         
         @if ($check_good)  <!-- いいね済みの場合 -->
             <input disabled type="submit" value="いいね済み"/>
@@ -31,6 +33,16 @@
             @endif
         @endif
     </h5>
+    
+    <h3>参加者リスト</h3>
+    <h5 class='participants'>
+        @foreach ($participants as $participant)
+            <div class='participant'>
+                <p class='name'>名前：{{ $participant->name }}</p>
+            </div>
+        @endforeach
+    </h5>
+    <!-- teacher_articleの詳細（終了） -->
     
     <div class="footer">
         <a href="/article/teacher_article">戻る</a>

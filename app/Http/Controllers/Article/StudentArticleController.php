@@ -14,16 +14,12 @@ class StudentArticleController extends Controller
     {
         $student_articles = Student_article::get();
         
-        
         return view('article/student_article_list')
         ->with(['student_articles' => $student_articles]);
     }
     
     public function showDetail(Student_article $student_article)
     {
-        //いいねの数を集計
-        $goods = $student_article->student_article_goods()->count();
-        
         //既にいいねしたデータがあるかチェック
         $check_good = false;
         
@@ -37,14 +33,7 @@ class StudentArticleController extends Controller
         
         return view('article/student_article_detail')
         ->with(['student_article' => $student_article,
-                'goods' => $goods,
                 'check_good' => $check_good]);
-        
-        
-        //return view('article/student_article_detail')
-        //    ->with(['student_article' => $student_article])
-        //    ->with(['goods' => $goods]);
-        
     }
     
     public function studentGood(Student_article $student_article)
@@ -72,7 +61,7 @@ class StudentArticleController extends Controller
     {
         //既にいいねしたデータがあるかチェック
         //teacher_article_goodsテーブル内を検索
-        $check_good = $student_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
+        $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         
         
         //データが存在しない場合、新規データを作成
@@ -81,6 +70,7 @@ class StudentArticleController extends Controller
             $good = new Student_article_good;
             $good->student_id = null;
             $good->teacher_id = \Auth::user()->id;
+            $good->student_article_id = $student_article->id;
             
             $good->save();
         }
