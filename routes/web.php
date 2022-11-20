@@ -40,16 +40,18 @@ Route::view('/teacher/home', 'teacher/home')->middleware('auth:teacher');
 Route::get('/mypage/student/log', [App\Http\Controllers\MyPage\Student\LogController::class, 'showLog'])->middleware('auth:student');
 Route::get('/mypage/student/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showTeacherArticleDetail'])->middleware('auth:student');
 Route::get('/mypage/student/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showStudentArticleDetail'])->middleware('auth:student');
-Route::post('/mypage/student/log/student_article/{student_article}/good', [App\Http\Controllers\MyPage\Student\LogController::class, 'student_article_Good'])->middleware('auth:student');
-Route::post('/mypage/student/log/teacher_article/{teacher_article}/good', [App\Http\Controllers\MyPage\Student\LogController::class, 'teacher_article_Good'])->middleware('auth:student');
+Route::post('/mypage/student/log/student_article/{student_article}/good', [App\Http\Controllers\MyPage\Student\LogController::class, 'studentArticleGood'])->middleware('auth:student');
+Route::post('/mypage/student/log/teacher_article/{teacher_article}/good', [App\Http\Controllers\MyPage\Student\LogController::class, 'teacherArticleGood'])->middleware('auth:student');
+Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'showPostArticle'])->middleware('auth:student');
+Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'postArticle'])->middleware('auth:student');
 
 
 //先生
 Route::get('/mypage/teacher/log', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showLog'])->middleware('auth:teacher');
 Route::get('/mypage/teacher/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showTeacherArticleDetail'])->middleware('auth:teacher');
 Route::get('/mypage/teacher/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showStudentArticleDetail'])->middleware('auth:teacher');
-Route::post('/mypage/teacher/log/student_article/{student_article}/good', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'student_article_Good'])->middleware('auth:teacher');
-Route::post('/mypage/teacher/log/teacher_article/{teacher_article}/good', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'teacher_article_Good'])->middleware('auth:teacher');
+Route::post('/mypage/teacher/log/student_article/{student_article}/good', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'studentArticleGood'])->middleware('auth:teacher');
+Route::post('/mypage/teacher/log/teacher_article/{teacher_article}/good', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'teacherArticleGood'])->middleware('auth:teacher');
 
 
 //-----チャット------------------------------

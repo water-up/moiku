@@ -98,7 +98,7 @@ class LogController extends Controller
                 'check_good' => $check_good]);
     }
     
-    public function student_article_Good(Student_article $student_article)
+    public function studentArticleGood(Student_article $student_article)
     {
         //既にいいねしたデータがあるかチェック
         //student_article_goodsテーブル内を検索
@@ -119,7 +119,7 @@ class LogController extends Controller
         return redirect('/mypage/teacher/log/student_article/' . $student_article->id);
     }
     
-    public function teacher_article_Good(Teacher_article $teacher_article)
+    public function teacherArticleGood(Teacher_article $teacher_article)
     {
         //既にいいねしたデータがあるかチェック
         //teacher_article_goodsテーブル内を検索

@@ -73,4 +73,17 @@ class Student_article extends Model
     }
     
     //ここにリレーションを追加
+    
+    
+    
+    protected $fillable = [
+        'teacher_id',
+        'secondary_category_id',
+        'prefecture_id',
+        'title',
+        'place',
+        'desered_fee',
+        'desered_date',
+        'body'
+    ];
 }
