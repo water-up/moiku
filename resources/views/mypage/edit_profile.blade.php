@@ -30,7 +30,7 @@
         <div class="name">
             <label>
                 <h4>ニックネーム：</h4>
-                <input type="name" name="name" value="{{ old('name',$user->name) }}"/>
+                <input type="text" name="name" value="{{ old('name',$user->name) }}"/>
                 <p class="name__error" style="color:red">{{ $errors->first('name') }}</p>
             </label>
         </div>
@@ -65,7 +65,7 @@
         <div class="introducation">
             <label>
                 <h4>自己紹介：</h4>
-                <textarea name="introducation" placeholder="ここに自己紹介を記入してください。">{{ old('name',$user->introducation) }}</textarea>
+                <textarea name="introducation" placeholder="ここに自己紹介を記入してください。">{{ old('introducation',$user->introducation) }}</textarea>
                 <p class="introducation__error" style="color:red">{{ $errors->first('introducation') }}</p>
             </label>
         </div>

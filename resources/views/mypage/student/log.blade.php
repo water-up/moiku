@@ -1,7 +1,10 @@
 @extends('layouts.navi')
 
 @section('content')
-
+    <h2 class='post'>
+        <a href="/mypage/student/log/post">新規投稿作成</a>
+    </h2>
+    
     <h2 align="center">授業管理</h2>
     
     <div class='projecting_articles'>
@@ -70,7 +73,7 @@
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $not_matched_article->prefecture->name }} {{ $not_matched_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $not_matched_article->desered_fee }} 円</p>
+                    <p class='desered_fee'>授業料：{{ $not_matched_article->desered_fee }}</p>
                     <p class='desered_date'>日程：{{ $not_matched_article->desered_date }}</p>
                     <p class='body'>コメント：{{ $not_matched_article->body }}</p>
                     <p class='goods'>いいね：{{ $not_matched_article->student_article_goods()->count() }}</p>
@@ -87,7 +90,7 @@
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $matched_article->prefecture->name }} {{ $matched_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $matched_article->desered_fee }} 円</p>
+                    <p class='desered_fee'>授業料：{{ $matched_article->desered_fee }}</p>
                     <p class='desered_date'>日程：{{ $matched_article->desered_date }}</p>
                     <p class='body'>コメント：{{ $matched_article->body }}</p>
                     <p class='goods'>いいね：{{ $matched_article->student_article_goods()->count() }}</p>
@@ -104,7 +107,7 @@
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $my_article->prefecture->name }} {{ $my_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $my_article->desered_fee }} 円</p>
+                    <p class='desered_fee'>授業料：{{ $my_article->desered_fee }}</p>
                     <p class='desered_date'>日程：{{ $my_article->desered_date }}</p>
                     <p class='body'>コメント：{{ $my_article->body }}</p>
                     <p class='goods'>いいね：{{ $my_article->student_article_goods()->count() }}</p>
