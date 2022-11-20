@@ -20,8 +20,8 @@ class TeacherArticleController extends Controller
     
     public function showDetail(Teacher_article $teacher_article)
     {
-        //いいねの数を集計
-        $goods = $teacher_article->teacher_article_goods()->count();
+        //参加者を取得
+        $participants = $teacher_article->students()->get();
         
         //既にいいねしたデータがあるかチェック
         $check_good = false;
@@ -35,15 +35,9 @@ class TeacherArticleController extends Controller
         
         
         return view('article/teacher_article_detail')
-        ->with(['teacher_article' => $teacher_article])
-        ->with(['goods' => $goods])
-        ->with(['check_good' => $check_good]);
-        
-        
-        //return view('article/teacher_article_detail')
-        //    ->with(['teacher_article' => $teacher_article])
-        //    ->with(['goods' => $goods]);
-        
+        ->with(['teacher_article' => $teacher_article,
+                'participants' => $participants,
+                'check_good' => $check_good]);
     }
     
     public function studentGood(Teacher_article $teacher_article)
@@ -80,6 +74,7 @@ class TeacherArticleController extends Controller
             $good = new Teacher_article_good;
             $good->student_id = null;
             $good->teacher_id = \Auth::user()->id;
+            $good->teacher_article_id = $teacher_article->id;
             
             $good->save();
         }

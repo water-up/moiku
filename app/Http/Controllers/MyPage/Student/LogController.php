@@ -4,8 +4,10 @@ namespace App\Http\Controllers\MyPage\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Teacher_article;
 use App\Models\Student_article;
+use App\Models\Teacher_article;
+use App\Models\Student_article_good;
+use App\Models\Teacher_article_good;
 use App\Models\Student;
 use DateTime;
 
@@ -80,14 +82,79 @@ class LogController extends Controller
         //参加者を取得
         $participants = $teacher_article->students()->get();
         
+        //既にいいねしたデータがあるかチェック
+        $check_good = false;
+        
+        //teacher_article_goodsテーブル内を検索
+        if(\Auth::guard('student')->check()){
+            $check_good = $teacher_article->teacher_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        }elseif(\Auth::guard('teacher')->check()){
+            $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
+        }
+        
+        
         return view('mypage/student/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
-                'participants' => $participants]);
+                'participants' => $participants,
+                'check_good' => $check_good]);
     }
     
     public function showStudentArticleDetail(Student_article $student_article)
     {
+        //既にいいねしたデータがあるかチェック
+        $check_good = false;
+        
+        //student_article_goodsテーブル内を検索
+        if(\Auth::guard('student')->check()){
+            $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        }elseif(\Auth::guard('teacher')->check()){
+            $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
+        }
+        
         return view('mypage/student/student_article_detail')
-        ->with(['student_article' => $student_article]);
+        ->with(['student_article' => $student_article,
+                'check_good' => $check_good]);
+    }
+    
+    public function student_article_Good(Student_article $student_article)
+    {
+        //既にいいねしたデータがあるかチェック
+        //student_article_goodsテーブル内を検索
+        $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        
+        
+        //データが存在しない場合、新規データを作成
+        if(!$check_good){
+            //Student_article_goodからインスタンスを生成し保存
+            $good = new Student_article_good;
+            $good->student_id = \Auth::user()->id;
+            $good->teacher_id = null;
+            $good->student_article_id = $student_article->id;
+            
+            $good->save();
+        }
+        
+        return redirect('/mypage/student/log/student_article/' . $student_article->id);
+    }
+    
+    public function teacher_article_Good(Teacher_article $teacher_article)
+    {
+        //既にいいねしたデータがあるかチェック
+        //teacher_article_goodsテーブル内を検索
+        $check_good = $teacher_article->teacher_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        
+        
+        //データが存在しない場合、新規データを作成
+        if(!$check_good){
+            //Teacher_article_goodからインスタンスを生成し保存
+            $good = new Teacher_article_good;
+            $good->student_id = \Auth::user()->id;
+            $good->teacher_id = null;
+            $good->teacher_article_id = $teacher_article->id;
+            
+            $good->save();
+        }
+        
+        return redirect('/mypage/student/log/teacher_article/' . $teacher_article->id);
     }
 }

@@ -17,7 +17,7 @@
         <div class="icon">
             <label>
                 <h4>アイコン画像：</h4>
-                <input type="file" name="icon" class="d-none" accept="image/png,image/jpeg,image/gif" id="avatar" />
+                {{-- <input type="file" name="icon" class="d-none" accept="image/png,image/jpeg,image/gif" id="avatar" /> --}}
                 @if (Auth::guard('student')->check())
                     <img src="/images/student.png" class="rounded-circle" style="object-fit: cover; width: 200px; height: 200px;">
                 @elseif (Auth::guard('teacher')->check())
@@ -82,6 +82,10 @@
         <input type="submit" value="保存する"/>
     </form>
     
+    @if (Auth::guard('student')->check())
     <input type="button" onclick="location.href='/mypage/student/profile'" value="戻る">
+    @elseif (Auth::guard('teacher')->check())
+    <input type="button" onclick="location.href='/mypage/teacher/profile'" value="戻る">
+    @endif
     
 @endsection

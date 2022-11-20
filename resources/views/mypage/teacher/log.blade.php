@@ -5,14 +5,14 @@
     <h2 align="center">授業管理</h2>
     
     <div class='projecting_articles'>
-        <h3 align="center">参加している授業</h3>
+        <h3 align="center">あなたが教える授業</h3>
         
         @foreach ($projecting_articles as $projecting_article)
             <!-- 募集人数を満たしている投稿 -->
             @if ($projecting_article->students()->count() >= $projecting_article->min_number)
                 <div class='filled_article'>
                     <h4 class='title'>
-                        <a href="/mypage/student/log/teacher_article/{{ $projecting_article->id }}">{{ $projecting_article->title }}</a>
+                        <a href="/mypage/teacher/log/teacher_article/{{ $projecting_article->id }}">{{ $projecting_article->title }}</a>
                     </h4>
                     <h5 class='content'>
                         <p class='place'>場所：{{ $projecting_article->prefecture->name }} {{ $projecting_article->place }}</p>
@@ -39,7 +39,7 @@
             @if ($projecting_article->students()->count() < $projecting_article->min_number)
                 <div class='filled_article'>
                     <h4 class='title'>
-                        <a href="/mypage/student/log/teacher_article/{{ $projecting_article->id }}">{{ $projecting_article->title }}</a>
+                        <a href="/mypage/teacher/log/teacher_article/{{ $projecting_article->id }}">{{ $projecting_article->title }}</a>
                     </h4>
                     <h5 class='content'>
                         <p class='place'>場所：{{ $projecting_article->prefecture->name }} {{ $projecting_article->place }}</p>
@@ -61,29 +61,12 @@
     </div>
     
     <div class='user_articles'>
-        <h3 align="center">あなたの投稿</h3>
-        
-        @foreach ($not_matched_articles as $not_matched_article)
-            <div class='not_matched_article'>
-                <h4 class='title'>
-                    <a href="/mypage/student/log/student_article/{{ $not_matched_article->id }}">{{ $not_matched_article->title }}</a>
-                </h4>
-                <h5 class='content'>
-                    <p class='place'>場所：{{ $not_matched_article->prefecture->name }} {{ $not_matched_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $not_matched_article->desered_fee }} 円</p>
-                    <p class='desered_date'>日程：{{ $not_matched_article->desered_date }}</p>
-                    <p class='body'>コメント：{{ $not_matched_article->body }}</p>
-                    <p class='goods'>いいね：{{ $not_matched_article->student_article_goods()->count() }}</p>
-                    
-                    <p class='info'><mark>立候補者が現れました！BESTコメントを選択してください</mark></p>
-                </h5>
-            </div>
-        @endforeach
+        <h3 align="center">あなたが立候補した投稿</h3>
         
         @foreach ($matched_articles as $matched_article)
             <div class='matched_article'>
                 <h4 class='title'>
-                    <a href="/mypage/student/log/student_article/{{ $matched_article->id }}">{{ $matched_article->title }}</a>
+                    <a href="/mypage/teacher/log/student_article/{{ $matched_article->id }}">{{ $matched_article->title }}</a>
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $matched_article->prefecture->name }} {{ $matched_article->place }}</p>
@@ -92,7 +75,7 @@
                     <p class='body'>コメント：{{ $matched_article->body }}</p>
                     <p class='goods'>いいね：{{ $matched_article->student_article_goods()->count() }}</p>
                     
-                    <p class='info'>BESTコメント選択済み。教え隊の投稿をお待ちください</p>
+                    <p class='info'>BESTコメントに選ばれました！学び隊募集記事を書いてください。</p>
                 </h5>
             </div>
         @endforeach
@@ -100,16 +83,16 @@
         @foreach ($my_articles as $my_article)
             <div class='my_article'>
                 <h4 class='title'>
-                    <a href="/mypage/student/log/student_article/{{ $my_article->id }}">{{ $my_article->title }}</a>
+                    <a href="/mypage/teacher/log/student_article/{{ $my_article->student_article->id }}">{{ $my_article->student_article->title }}</a>
                 </h4>
                 <h5 class='content'>
-                    <p class='place'>場所：{{ $my_article->prefecture->name }} {{ $my_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $my_article->desered_fee }} 円</p>
-                    <p class='desered_date'>日程：{{ $my_article->desered_date }}</p>
-                    <p class='body'>コメント：{{ $my_article->body }}</p>
-                    <p class='goods'>いいね：{{ $my_article->student_article_goods()->count() }}</p>
+                    <p class='place'>場所：{{ $my_article->student_article->prefecture->name }} {{ $my_article->student_article->place }}</p>
+                    <p class='desered_fee'>授業料：{{ $my_article->student_article->desered_fee }} 円</p>
+                    <p class='desered_date'>日程：{{ $my_article->student_article->desered_date }}</p>
+                    <p class='body'>コメント：{{ $my_article->student_article->body }}</p>
+                    <p class='goods'>いいね：{{ $my_article->student_article->student_article_goods()->count() }}</p>
                     
-                    <p class='info'>教え隊からのコメントはありません。</p>
+                    <p class='info'>マッチングをお待ち下さい。</p>
                 </h5>
             </div>
         @endforeach
@@ -121,7 +104,7 @@
         @foreach ($not_reviewed_articles as $not_reviewed_article)
             <div class='not_reviewed_article'>
                 <h4 class='title'>
-                    <a href="/mypage/student/log/teacher_article/{{ $not_reviewed_article->id }}">{{ $not_reviewed_article->title }}</a>
+                    <a href="/mypage/teacher/log/teacher_article/{{ $not_reviewed_article->id }}">{{ $not_reviewed_article->title }}</a>
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $not_reviewed_article->prefecture->name }} {{ $not_reviewed_article->place }}</p>
@@ -131,7 +114,7 @@
                     <p class='body'>コメント：{{ $not_reviewed_article->body }}</p>
                     <p class='goods'>いいね：{{ $not_reviewed_article->teacher_article_goods()->count() }}</p>
                     
-                    <p class='info'><mark>授業評価を行なってください。</mark></p>
+                    <p class='info'><mark>出欠登録を行なってください。</mark></p>
                 </h5>
             </div>
         @endforeach
@@ -139,7 +122,7 @@
         @foreach ($reviewed_articles as $reviewed_article)
             <div class='reviewed_article'>
                 <h4 class='title'>
-                    <a href="/mypage/student/log/teacher_article/{{ $reviewed_article->id }}">{{ $reviewed_article->title }}</a>
+                    <a href="/mypage/teacher/log/teacher_article/{{ $reviewed_article->id }}">{{ $reviewed_article->title }}</a>
                 </h4>
                 <h5 class='content'>
                     <p class='place'>場所：{{ $reviewed_article->prefecture->name }} {{ $reviewed_article->place }}</p>
@@ -149,7 +132,7 @@
                     <p class='body'>コメント：{{ $reviewed_article->body }}</p>
                     <p class='goods'>いいね：{{ $reviewed_article->teacher_article_goods()->count() }}</p>
                     
-                    <p class='info'>授業評価済みです</p>
+                    <p class='info'>出欠登録済みです。</p>
                 </h5>
             </div>
         @endforeach

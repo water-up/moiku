@@ -24,7 +24,7 @@
             <input disabled type="submit" value="いいね済み"/>
             
         @else  <!-- いいねしていないの場合 -->
-            <form action="/mypage/student/log/teacher_article/{{ $teacher_article->id }}/good" method="POST">
+            <form action="/mypage/teacher/log/teacher_article/{{ $teacher_article->id }}/good" method="POST">
                 @csrf
             <input type="submit" value="いいねする"/>
         @endif
@@ -40,6 +40,6 @@
     </h5>
     
     <div class="footer">
-        <a href="/mypage/student/log">戻る</a>
+        <a href="/mypage/teacher/log">戻る</a>
     </div>
 @endsection

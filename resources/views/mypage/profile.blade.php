@@ -66,6 +66,10 @@
         </label>
     </div>
     
+    @if (Auth::guard('student')->check())
     <input type="button" onclick="location.href='/mypage/student/profile/edit'" value="編集する">
+    @elseif (Auth::guard('teacher')->check())
+    <input type="button" onclick="location.href='/mypage/teacher/profile/edit'" value="編集する">
+    @endif
     
 @endsection

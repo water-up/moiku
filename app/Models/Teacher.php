@@ -36,7 +36,7 @@ class Teacher extends User
         return $this->belongsToMany(Secondary_category::class);
     }
     
-    public function student_article()
+    public function student_articles()
     {
         return $this->hasMany(Student_article::class);
     }
@@ -82,6 +82,8 @@ class Teacher extends User
         'name',
         'email',
         'password',
+        'introducation',
+        'icon',
     ];
 
     /**
