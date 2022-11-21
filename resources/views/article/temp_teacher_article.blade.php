@@ -12,24 +12,26 @@
 </h5>
 
 <!-- いいね機能 -->
-<h5 class='goods'>
-    <p class='goods'>いいね：{{ $teacher_article->teacher_article_goods()->count() }}</p>
-    
+<p class='goods'>
     @if ($check_good)  <!-- いいね済みの場合 -->
-        <input disabled type="submit" value="いいね済み"/>
+        <input disabled type="submit" value="いいね"/>
         
     @else  <!-- いいねしていないの場合 -->
         @if (Auth::guard('student')->check())
-            <form action="/student_good/{{ $teacher_article->id }}" method="POST">
+            <form action="/student_good/teacher_article/{{ $teacher_article->id }}" method="POST">
                 @csrf
-            <input type="submit" value="いいねする"/>
+            <input type="submit" value="いいね"/>
         @elseif (Auth::guard('teacher')->check())
-            <form action="/teacher_good/{{ $teacher_article->id }}" method="POST">
+            <form action="/teacher_good/teacher_article/{{ $teacher_article->id }}" method="POST">
                 @csrf
-            <input type="submit" value="いいねする"/>
+            <input type="submit" value="いいね"/>
+        @else
+            いいね
         @endif
     @endif
-</h5>
+    
+    ：{{ $teacher_article->teacher_article_goods()->count() }}
+</p>
 
 <!-- 参加者リスト -->
 <h3>参加者リスト</h3>

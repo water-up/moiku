@@ -41,4 +41,14 @@ class Teacher_reaction extends Model
     //ここにリレーションを追加
     
     
+    
+    protected $fillable = [
+        'teacher_id',
+        'student_article_id',
+        'min_number',
+        'max_number',
+        'desered_time',
+        'desered_date',
+        'body',
+    ];
 }

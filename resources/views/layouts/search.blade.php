@@ -28,8 +28,8 @@
             
         <h5>掲示板</h5>
         <ul>
-            <li><a href='/article/teacher_article'>学び隊掲示板へ</a></li>
-            <li><a href='/article/student_article'>教え隊掲示板へ</a></li>
+            <li><a href='/article/teacher_article'>学び隊募集掲示板へ</a></li>
+            <li><a href='/article/student_article'>教え隊募集掲示板へ</a></li>
         </ul>
     </nav>
 

@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Student_article;
 use App\Models\Student_article_good;
 use App\Models\Teacher_reaction;
+use App\Models\Teacher;
 use DateTime;
 
-class StudentArticleController extends Controller
+class StudentArticleController extends GoodController
 {
     public function showList()
     {
-        $student_articles = Student_article::get();
+        $student_articles = 
+            Student_article::doesntHave('teacher_article')
+            ->get();
         
         return view('article/student_article_list')
         ->with(['student_articles' => $student_articles]);
@@ -22,84 +26,25 @@ class StudentArticleController extends Controller
     public function showDetail(Student_article $student_article)
     {
         //既にいいねしたデータがあるかチェック
-        $check_good = false;
-        
-        //student_article_goodsテーブル内を検索
-        if(\Auth::guard('student')->check()){
-            $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        }elseif(\Auth::guard('teacher')->check()){
-            $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        }
+        //GoodControllerのメソッドを使用
+        $check_good = $this->checkStudentArticleGood($student_article);
         
         $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
+        
+        $check_reaction = false;
+        //teacher_reactionsテーブル内を検索
+        if(\Auth::guard('teacher')->check()){
+            $check_reaction = DB::table('teacher_reactions')
+                ->where('student_article_id',$student_article->id)
+                ->where('teacher_id',\Auth::guard('teacher')->user()->id)
+                ->exists();
+        }
         
         return view('article/student_article_detail')
         ->with(['student_article' => $student_article,
                 'check_good' => $check_good,
-                'reactions' => $reactions]);
-    }
-    
-    public function studentGood(Student_article $student_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        //student_article_goodsテーブル内を検索
-        $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        
-        
-        //データが存在しない場合、新規データを作成
-        if(!$check_good){
-            //Student_article_goodからインスタンスを生成し保存
-            $good = new Student_article_good;
-            $good->student_id = \Auth::user()->id;
-            $good->teacher_id = null;
-            $good->student_article_id = $student_article->id;
-            
-            $good->save();
-        }
-        
-        return back();
-    }
-    
-    public function teacherGood(Student_article $student_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        //teacher_article_goodsテーブル内を検索
-        $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        
-        
-        //データが存在しない場合、新規データを作成
-        if(!$check_good){
-            //Student_article_goodからインスタンスを生成し保存
-            $good = new Student_article_good;
-            $good->student_id = null;
-            $good->teacher_id = \Auth::user()->id;
-            $good->student_article_id = $student_article->id;
-            
-            $good->save();
-        }
-        
-        return redirect('/article/student_article/' . $student_article->id);
-    }
-    
-    
-    public function showReaction(Student_article $student_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        $check_good = false;
-        
-        //student_article_goodsテーブル内を検索
-        if(\Auth::guard('student')->check()){
-            $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        }elseif(\Auth::guard('teacher')->check()){
-            $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        }
-        
-        $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
-        
-        return view('article/teacher_reaction_form')
-        ->with(['student_article' => $student_article,
-                'check_good' => $check_good,
-                'reactions' => $reactions]);
+                'reactions' => $reactions,
+                'check_reaction' => $check_reaction]);
     }
 }
 

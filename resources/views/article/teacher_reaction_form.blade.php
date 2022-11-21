@@ -13,8 +13,8 @@
             
             <div class="min_number">
                 <label>
-                    <h4>タイトル：</h4>
-                    <input type="text" name="min_number" value="{{ old('min_number') }}" />
+                    <h4>最低参加人数：</h4>
+                    <input type="number" name="min_number" value="{{ old('min_number') }}" />
                     <p class="min_number__error" style="color:red">{{ $errors->first('min_number') }}</p>
                 </label>
             </div>
@@ -22,7 +22,7 @@
             <div class="max_number">
                 <label>
                     <h4>最大参加人数：</h4>
-                    <input type="text" name="max_number" value="{{ old('max_number') }}" />
+                    <input type="number" name="max_number" value="{{ old('max_number') }}" />
                     <p class="max_number__error" style="color:red">{{ $errors->first('max_number') }}</p>
                 </label>
             </div>

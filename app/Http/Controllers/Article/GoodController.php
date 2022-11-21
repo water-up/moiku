@@ -12,30 +12,39 @@ use DateTime;
 
 class GoodController extends Controller
 {
-    public function showStudentArticleGood()
+    public function checkStudentArticleGood($student_article)
     {
         //既にいいねしたデータがあるかチェック
         $check_good = false;
         
         //student_article_goodsテーブル内を検索
         if(\Auth::guard('student')->check()){
-            $check_good = Student_article::student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        }elseif(\Auth::guard('teacher')->check()){
-            $check_good = Student_article::student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        }
-        
-        return ([$check_good,$reactions]);
-    }
-    
-    public function studentArticleGood(Student_article $student_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        //student_article_goodsテーブル内を検索
-        if(\Auth::guard('student')->check()){
             $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
         }elseif(\Auth::guard('teacher')->check()){
             $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         }
+        
+        return $check_good;
+    }
+    
+    public function checkTeacherArticleGood($teacher_article)
+    {
+        //既にいいねしたデータがあるかチェック
+        $check_good = false;
+        
+        //student_article_goodsテーブル内を検索
+        if(\Auth::guard('student')->check()){
+            $check_good = $teacher_article->teacher_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        }elseif(\Auth::guard('teacher')->check()){
+            $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
+        }
+        
+        return $check_good;
+    }
+    
+    public function studentArticleGood(Student_article $student_article)
+    {
+        $check_good = $this->checkStudentArticleGood($student_article);
         
         //データが存在しない場合、新規データを作成
         if(!$check_good){
@@ -58,13 +67,7 @@ class GoodController extends Controller
     
     public function teacherArticleGood(Teacher_article $teacher_article)
     {
-        //既にいいねしたデータがあるかチェック
-        //teacher_article_goodsテーブル内を検索
-        if(\Auth::guard('student')->check()){
-            $check_good = $teacher_article->teacher_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        }elseif(\Auth::guard('teacher')->check()){
-            $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        }
+        $check_good = $this->checkTeacherArticleGood($teacher_article);
         
         //データが存在しない場合、新規データを作成
         if(!$check_good){
