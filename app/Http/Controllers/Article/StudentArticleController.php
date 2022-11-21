@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student_article;
 use App\Models\Student_article_good;
+use App\Models\Teacher_reaction;
 use DateTime;
 
 class StudentArticleController extends Controller
@@ -30,10 +31,12 @@ class StudentArticleController extends Controller
             $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         }
         
+        $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
         
         return view('article/student_article_detail')
         ->with(['student_article' => $student_article,
-                'check_good' => $check_good]);
+                'check_good' => $check_good,
+                'reactions' => $reactions]);
     }
     
     public function studentGood(Student_article $student_article)
@@ -54,7 +57,7 @@ class StudentArticleController extends Controller
             $good->save();
         }
         
-        return redirect('/article/student_article/' . $student_article->id);
+        return back();
     }
     
     public function teacherGood(Student_article $student_article)
@@ -76,6 +79,27 @@ class StudentArticleController extends Controller
         }
         
         return redirect('/article/student_article/' . $student_article->id);
+    }
+    
+    
+    public function showReaction(Student_article $student_article)
+    {
+        //既にいいねしたデータがあるかチェック
+        $check_good = false;
+        
+        //student_article_goodsテーブル内を検索
+        if(\Auth::guard('student')->check()){
+            $check_good = $student_article->student_article_goods()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        }elseif(\Auth::guard('teacher')->check()){
+            $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
+        }
+        
+        $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
+        
+        return view('article/teacher_reaction_form')
+        ->with(['student_article' => $student_article,
+                'check_good' => $check_good,
+                'reactions' => $reactions]);
     }
 }
 

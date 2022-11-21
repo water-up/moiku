@@ -111,9 +111,13 @@ class LogController extends Controller
             $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         }
         
+        $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
+        
+        
         return view('mypage/student/student_article_detail')
         ->with(['student_article' => $student_article,
-                'check_good' => $check_good]);
+                'check_good' => $check_good,
+                'reactions' => $reactions]);
     }
     
     public function studentArticleGood(Student_article $student_article)
