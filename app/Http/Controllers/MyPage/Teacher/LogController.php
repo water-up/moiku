@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MyPage\Teacher;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Student_article;
 use App\Models\Teacher_article;
 use App\Models\Student_article_good;
@@ -95,52 +96,20 @@ class LogController extends Controller
         
         $reactions = Teacher_reaction::where('student_article_id',$student_article->id)->get();
         
+        $check_reaction = false;
+        //teacher_reactionsテーブル内を検索
+        if(\Auth::guard('teacher')->check()){
+            $check_reaction = DB::table('teacher_reactions')
+                ->where('student_article_id',$student_article->id)
+                ->where('teacher_id',\Auth::guard('teacher')->user()->id)
+                ->exists();
+        }
+        
         
         return view('mypage/teacher/student_article_detail')
         ->with(['student_article' => $student_article,
                 'check_good' => $check_good,
-                'reactions' => $reactions]);
-    }
-    
-    public function studentArticleGood(Student_article $student_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        //student_article_goodsテーブル内を検索
-        $check_good = $student_article->student_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        
-        
-        //データが存在しない場合、新規データを作成
-        if(!$check_good){
-            //Student_article_goodからインスタンスを生成し保存
-            $good = new Student_article_good;
-            $good->student_id = null;
-            $good->teacher_id = \Auth::user()->id;
-            $good->student_article_id = $student_article->id;
-            
-            $good->save();
-        }
-        
-        return redirect('/mypage/teacher/log/student_article/' . $student_article->id);
-    }
-    
-    public function teacherArticleGood(Teacher_article $teacher_article)
-    {
-        //既にいいねしたデータがあるかチェック
-        //teacher_article_goodsテーブル内を検索
-        $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
-        
-        
-        //データが存在しない場合、新規データを作成
-        if(!$check_good){
-            //Teacher_article_goodからインスタンスを生成し保存
-            $good = new Teacher_article_good;
-            $good->student_id = null;
-            $good->teacher_id = \Auth::user()->id;
-            $good->teacher_article_id = $teacher_article->id;
-            
-            $good->save();
-        }
-        
-        return redirect('/mypage/teacher/log/teacher_article/' . $teacher_article->id);
+                'reactions' => $reactions,
+                'check_reaction' => $check_reaction]);
     }
 }

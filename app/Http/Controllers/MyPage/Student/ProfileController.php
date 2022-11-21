@@ -29,7 +29,7 @@ class ProfileController extends Controller
         ->with(['categories' => $categories]);
     }
     
-    public function editProfile(Request $request,)
+    public function editProfile(Request $request)
     {
         /*
         $student = Student::find(\Auth::user()->id);

@@ -20,6 +20,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 //=====ログインページ===========================================================
 //生徒
 Route::view('/student/login', 'student/login')->name('student.login');
@@ -35,18 +37,24 @@ Route::post('/teacher/register', [App\Http\Controllers\teacher\RegisterControlle
 Route::view('/teacher/home', 'teacher/home')->middleware('auth:teacher');
 
 
+
+
 //=====マイページ===============================================================
 //-----授業管理------------------------------
 //生徒
-Route::get('/mypage/student/log', [App\Http\Controllers\MyPage\Student\LogController::class, 'showLog'])->middleware('auth:student');
-Route::get('/mypage/student/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showStudentArticleDetail'])->middleware('auth:student');
-Route::get('/mypage/student/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showTeacherArticleDetail'])->middleware('auth:student');
-Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'showPostArticle'])->middleware('auth:student');
-Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'postArticle'])->middleware('auth:student');
+Route::middleware('auth:student')->group(function(){
+    Route::get('/mypage/student/log', [App\Http\Controllers\MyPage\Student\LogController::class, 'showLog']);
+    Route::get('/mypage/student/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showStudentArticleDetail']);
+    Route::get('/mypage/student/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showTeacherArticleDetail']);
+    Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'showPostArticle']);
+    Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'postArticle']);
+});
 //先生
-Route::get('/mypage/teacher/log', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showLog'])->middleware('auth:teacher');
-Route::get('/mypage/teacher/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showStudentArticleDetail'])->middleware('auth:teacher');
-Route::get('/mypage/teacher/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showTeacherArticleDetail'])->middleware('auth:teacher');
+Route::middleware('auth:teacher')->group(function(){
+    Route::get('/mypage/teacher/log', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showLog']);
+    Route::get('/mypage/teacher/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showStudentArticleDetail'])->name('mypage_student_article_detail');
+    Route::get('/mypage/teacher/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showTeacherArticleDetail']);
+});
 
 
 //-----チャット------------------------------
@@ -55,15 +63,21 @@ Route::view('/mypage/student/chat', 'mypage/chat')->middleware('auth:student');
 //先生
 Route::view('/mypage/teacher/chat', 'mypage/chat')->middleware('auth:teacher');
 
+
 //-----プロフィール------------------------------
 //生徒
-Route::get('/mypage/student/profile', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showProfile'])->middleware('auth:student');
-Route::get('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showEditProfile'])->middleware('auth:student');
-Route::put('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'editProfile'])->middleware('auth:student');
+Route::middleware('auth:student')->group(function(){
+    Route::get('/mypage/student/profile', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showProfile']);
+    Route::get('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'showEditProfile']);
+    Route::put('/mypage/student/profile/edit', [App\Http\Controllers\MyPage\Student\ProfileController::class, 'editProfile']);
+});
 //先生
-Route::get('/mypage/teacher/profile', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showProfile'])->middleware('auth:teacher');
-Route::get('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showEditProfile'])->middleware('auth:teacher');
-Route::put('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'editProfile'])->middleware('auth:teacher');
+Route::middleware('auth:teacher')->group(function(){
+    Route::get('/mypage/teacher/profile', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showProfile']);
+    Route::get('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'showEditProfile']);
+    Route::put('/mypage/teacher/profile/edit', [App\Http\Controllers\MyPage\Teacher\ProfileController::class, 'editProfile']);
+});
+
 
 //-----Moikuについて------------------------------
 //生徒
@@ -71,31 +85,39 @@ Route::view('/mypage/student/guide', 'mypage/guide')->middleware('auth:student')
 //先生
 Route::view('/mypage/teacher/guide', 'mypage/guide')->middleware('auth:teacher');
 
+
+
+
 //=====掲示板ページ=============================================================
 //-----生徒の投稿記事（先生募集掲示板）------------------------------
 Route::get('/article/student_article', [App\Http\Controllers\Article\StudentArticleController::class, 'showList']);
 Route::get('/article/student_article/{student_article}', [App\Http\Controllers\Article\StudentArticleController::class, 'showDetail'])->name('student_article_detail');
-Route::post('/article/student_article/{student_article}/student_good', [GoodController::class, 'studentArticleGood'])->middleware('auth:student');
-Route::post('/article/student_article/{student_article}/teacher_good', [GoodController::class, 'studentArticleGood'])->middleware('auth:teacher');
-Route::get('/article/student_article/{student_article}/reaction', [App\Http\Controllers\Article\StudentArticleController::class, 'showReaction'])->middleware('auth:teacher')->name('reaction_form');
-Route::post('/article/student_article/{student_article}/reaction', [App\Http\Controllers\Article\StudentArticleController::class, 'postReaction'])->middleware('auth:teacher');
+//教え隊の立候補機能
+Route::middleware('auth:teacher')->group(function(){
+    Route::get('/article/student_article/{student_article}/reaction', [App\Http\Controllers\Article\ReactionController::class, 'showReaction'])->name('reaction_form');
+    Route::post('/article/student_article/{student_article}/reaction', [App\Http\Controllers\Article\ReactionController::class, 'postReaction']);
+    //実装中
+    Route::delete('/article/student_article/{student_article}/reaction/{teacher_reaction}', [App\Http\Controllers\Article\ReactionController::class, 'deleteReaction']);
+    
+});
 
 
 //-----先生の投稿記事（生徒募集掲示板）------------------------------
 Route::get('/article/teacher_article', [App\Http\Controllers\Article\TeacherArticleController::class, 'showList']);
 Route::get('/article/teacher_article/{teacher_article}', [App\Http\Controllers\Article\TeacherArticleController::class, 'showDetail']);
-Route::post('/article/teacher_article/{teacher_article}/student_good', [GoodController::class, 'teacherArticleGood'])->middleware('auth:student');
-Route::post('/article/teacher_article/{teacher_article}/teacher_good', [GoodController::class, 'teacherArticleGood'])->middleware('auth:teacher');
 
 
 //-----いいね機能------------------------------
 //生徒
-Route::post('/student_good/{student_article}', [GoodController::class, 'studentArticleGood'])->middleware('auth:student');
-Route::post('/student_good/{teacher_article}', [GoodController::class, 'teacherArticleGood'])->middleware('auth:student');
+Route::middleware('auth:student')->group(function(){
+    Route::post('/student_good/student_article/{student_article}', [GoodController::class, 'studentArticleGood']);
+    Route::post('/student_good/teacher_article/{teacher_article}', [GoodController::class, 'teacherArticleGood']);
+});
 //先生
-Route::post('/teacher_good/{student_article}', [GoodController::class, 'studentArticleGood'])->middleware('auth:teacher');
-Route::post('/teacher_good/{teacher_article}', [GoodController::class, 'teacherArticleGood'])->middleware('auth:teacher');
-
+Route::middleware('auth:teacher')->group(function(){
+    Route::post('/teacher_good/student_article/{student_article}', [GoodController::class, 'studentArticleGood']);
+    Route::post('/teacher_good/teacher_article/{teacher_article}', [GoodController::class, 'teacherArticleGood']);
+});
 
 
 
