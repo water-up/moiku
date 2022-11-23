@@ -29,11 +29,15 @@ class TeacherArticleController extends GoodController
         //GoodControllerのメソッドを使用
         $check_good = $this->checkTeacherArticleGood($teacher_article);
         
+        //参加チェック
+        $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        
         
         return view('article/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
                 'participants' => $participants,
-                'check_good' => $check_good]);
+                'check_good' => $check_good,
+                'check_join' => $check_join]);
     }
 }
 

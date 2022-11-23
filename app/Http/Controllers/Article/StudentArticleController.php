@@ -40,6 +40,7 @@ class StudentArticleController extends GoodController
                 ->exists();
         }
         
+        
         return view('article/student_article_detail')
         ->with(['student_article' => $student_article,
                 'check_good' => $check_good,

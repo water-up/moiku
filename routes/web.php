@@ -46,8 +46,8 @@ Route::middleware('auth:student')->group(function(){
     Route::get('/mypage/student/log', [App\Http\Controllers\MyPage\Student\LogController::class, 'showLog']);
     Route::get('/mypage/student/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showStudentArticleDetail']);
     Route::get('/mypage/student/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showTeacherArticleDetail']);
-    Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'showPostArticle']);
-    Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\ArticleController::class, 'postArticle']);
+    Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\PostController::class, 'showPostArticle']);
+    Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\PostController::class, 'postArticle']);
 });
 //先生
 Route::middleware('auth:teacher')->group(function(){
@@ -100,11 +100,19 @@ Route::middleware('auth:teacher')->group(function(){
     Route::delete('/article/student_article/{student_article}/reaction/{teacher_reaction}', [App\Http\Controllers\Article\ReactionController::class, 'deleteReaction']);
     
 });
-
+//学び隊のBESTコメント選択
+Route::middleware('auth:student')->group(function(){
+    Route::put('/article/student_article/{student_article}/match', [App\Http\Controllers\Article\ReactionController::class, 'selectMatch']);
+    Route::put('/article/student_article/{student_article}/reset_match', [App\Http\Controllers\Article\ReactionController::class, 'resetMatch']);
+});
 
 //-----先生の投稿記事（生徒募集掲示板）------------------------------
 Route::get('/article/teacher_article', [App\Http\Controllers\Article\TeacherArticleController::class, 'showList']);
 Route::get('/article/teacher_article/{teacher_article}', [App\Http\Controllers\Article\TeacherArticleController::class, 'showDetail']);
+Route::middleware('auth:student')->group(function(){
+    Route::post('/article/teacher_article/{teacher_article}/join', [App\Http\Controllers\Article\JoinController::class, 'joinClass']);
+    Route::delete('/article/teacher_article/{teacher_article}/join', [App\Http\Controllers\Article\JoinController::class, 'cancelClass']);
+});
 
 
 //-----いいね機能------------------------------
