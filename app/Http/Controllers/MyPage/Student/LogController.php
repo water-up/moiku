@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MyPage\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use App\Models\Student_article;
 use App\Models\Teacher_article;
@@ -93,11 +94,15 @@ class LogController extends Controller
             $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         }
         
+        //参加チェック
+        $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        
         
         return view('mypage/student/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
                 'participants' => $participants,
-                'check_good' => $check_good]);
+                'check_good' => $check_good,
+                'check_join' => $check_join]);
     }
     
     public function showStudentArticleDetail(Student_article $student_article)

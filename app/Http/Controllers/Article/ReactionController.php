@@ -41,5 +41,20 @@ class  ReactionController extends GoodController
         
         return redirect('/article/student_article/' . $student_article->id);
     }
+    
+    public function selectMatch(Request $request,Student_article $student_article)
+    {
+        $student_article->fill($request->all())->save();
+        
+        return back();
+    }
+    
+    public function resetMatch(Student_article $student_article)
+    {
+        $student_article->teacher_id = null;
+        $student_article->save();
+        
+        return back();
+    }
 }
 

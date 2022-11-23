@@ -10,7 +10,7 @@ use App\Models\Prefecture;
 use App\Models\Secondary_category;
 
 
-class ArticleController extends Controller
+class PostController extends Controller
 {
     public function showPostArticle()
     {
