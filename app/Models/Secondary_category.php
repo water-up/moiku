@@ -39,6 +39,11 @@ class Secondary_category extends Model
         return $this->hasMany(Student_article::class);
     }
     
+    public function teacher_articles()
+    {
+        return $this->hasMany(Teacher_article::class);
+    }
+    
     public function students()
     {
         return $this->belongsToMany(Student::class);

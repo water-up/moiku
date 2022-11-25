@@ -6,16 +6,16 @@
     
     @if(!is_null($student_article->teacher_id))
     <p class='info'>BESTコメント選択済み</p>
-    <form action="/article/student_article/{{ $student_article->id }}/reset_match" method="POST">
+    <form action='/article/student_article/{{ $student_article->id }}/reset_match' method="POST">
         @csrf
         @method('PUT')
         <input type="submit" value="BESTコメント解除"/>
     </form>
     
-    @elseif(is_null($student_article->teacher_id) && !$reactions->isEmpty()))
+    @elseif(is_null($student_article->teacher_id) && !$reactions->isEmpty())
     <p class='info'><mark>BESTコメントを選択してください</mark></p>
     
-    <form action="/article/student_article/{{ $student_article->id }}/match" method="POST">
+    <form action='/article/student_article/{{ $student_article->id }}/match' method="POST">
         @csrf
         @method('PUT')
         

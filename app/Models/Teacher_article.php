@@ -38,6 +38,11 @@ class Teacher_article extends Model
         return $this->belongsTo(Student_article::class);
     }
     
+    public function secondary_category()
+    {
+        return $this->belongsTo(Secondary_category::class);
+    }
+    
     //ここにリレーションを追加
     
     
@@ -69,5 +74,21 @@ class Teacher_article extends Model
     
     //ここにリレーションを追加
     
+    
+    
+    protected $fillable = [
+        'teacher_id',
+        'secondary_category_id',
+        'prefecture_id',
+        'title',
+        'place',
+        'fee',
+        'date',
+        'start_time',
+        'finish_time',
+        'min_number',
+        'max_number',
+        'body'
+    ];
     
 }

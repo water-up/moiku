@@ -23,7 +23,7 @@ class Student_articleFactory extends Factory
         return [
             'student_id' => $this->faker->numberBetween($min = 1, $max = 30),
             'teacher_id' => null,
-            'secondary_category_id' => '2',
+            'secondary_category_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'prefecture_id' => $this->faker->numberBetween($min = 1, $max = 47),
             'title' => $this->faker->realText($maxNbChars = 50, $indexSize = 5),
             'place' => $this->faker->city,

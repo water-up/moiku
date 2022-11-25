@@ -1,6 +1,8 @@
-@extends('article.student_article_detail')
+@extends('layouts.search')
 
-@section('form')
+@section('content')
+    
+    @include('article.temp_student_article')
     
     <div class='teacher_reaction_form'>
         <h3 class="title">立候補入力フォーム</h3>
@@ -56,5 +58,7 @@
         
         
     </div>
+    
+    @include('article.temp_reaction_list')
     
 @endsection

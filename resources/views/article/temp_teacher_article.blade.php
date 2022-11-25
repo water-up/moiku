@@ -16,7 +16,7 @@
     @if ($check_good)  <!-- いいね済みの場合 -->
         <input disabled type="submit" value="いいね"/>
         
-    @else  <!-- いいねしていないの場合 -->
+    @else <!-- いいねしていないの場合 -->
         @if (Auth::guard('student')->check())
             <form action="/student_good/teacher_article/{{ $teacher_article->id }}" method="POST">
                 @csrf
@@ -31,4 +31,5 @@
     @endif
     
     ：{{ $teacher_article->teacher_article_goods()->count() }}
+    </form>
 </p>

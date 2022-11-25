@@ -15,6 +15,5 @@
     <div class="footer">
         <a href="/article/student_article">戻る</a>
     </div>
-    @endif
     
 @endsection

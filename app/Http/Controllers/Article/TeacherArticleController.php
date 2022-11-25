@@ -30,8 +30,10 @@ class TeacherArticleController extends GoodController
         $check_good = $this->checkTeacherArticleGood($teacher_article);
         
         //参加チェック
-        $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
-        
+        $check_join = false;
+        if(\Auth::guard('student')->check()){
+            $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        }
         
         return view('article/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
