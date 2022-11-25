@@ -48,12 +48,18 @@ Route::middleware('auth:student')->group(function(){
     Route::get('/mypage/student/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Student\LogController::class, 'showTeacherArticleDetail']);
     Route::get('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\PostController::class, 'showPostArticle']);
     Route::post('/mypage/student/log/post', [App\Http\Controllers\MyPage\Student\PostController::class, 'postArticle']);
+    Route::post('/mypage/student/log/teacher_article/{teacher_article}/review', [App\Http\Controllers\MyPage\Teacher\ReviewController::class, 'postReview']);
+    
 });
 //先生
 Route::middleware('auth:teacher')->group(function(){
     Route::get('/mypage/teacher/log', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showLog']);
     Route::get('/mypage/teacher/log/student_article/{student_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showStudentArticleDetail'])->name('mypage_student_article_detail');
     Route::get('/mypage/teacher/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showTeacherArticleDetail']);
+    Route::get('/mypage/teacher/log/student_article/{student_article}/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'showPostArticle']);
+    Route::post('/mypage/teacher/log/student_article/{student_article}/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'postArticle']);
+    Route::post('/mypage/teacher/log/teacher_article/{teacher_article}/review', [App\Http\Controllers\MyPage\Teacher\ReviewController::class, 'registerAttendance']);
+    
 });
 
 
@@ -126,11 +132,4 @@ Route::middleware('auth:teacher')->group(function(){
     Route::post('/teacher_good/student_article/{student_article}', [GoodController::class, 'studentArticleGood']);
     Route::post('/teacher_good/teacher_article/{teacher_article}', [GoodController::class, 'teacherArticleGood']);
 });
-
-
-
-
-
-
-//ゲスト
 

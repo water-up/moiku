@@ -75,7 +75,7 @@
                     <p class='body'>コメント：{{ $matched_article->body }}</p>
                     <p class='goods'>いいね：{{ $matched_article->student_article_goods()->count() }}</p>
                     
-                    <p class='info'>BESTコメントに選ばれました！学び隊募集記事を書いてください。</p>
+                    <p class='info'><mark>BESTコメントに選ばれました！学び隊募集記事を書いてください。</mark></p>
                 </h5>
             </div>
         @endforeach

@@ -30,7 +30,5 @@
     @endif
     
     ：{{ $student_article->student_article_goods()->count() }}
+    </form>
 </p>
-
-
-@yield('form')
