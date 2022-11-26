@@ -2,7 +2,7 @@
 
 @section('content')
     
-    @include('article.temp_student_article')
+    @include('article.template.student_article')
     
     @if(!is_null($student_article->teacher_id))
     <p class='info'>BESTコメント選択済み</p>
@@ -31,7 +31,7 @@
     
     
 
-    @include('article.temp_reaction_list')
+    @include('article.template.reaction_list')
         
     <div class="footer">
         <a href="/mypage/student/log">戻る</a>

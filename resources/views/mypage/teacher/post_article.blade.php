@@ -2,7 +2,7 @@
 
 @section('content')
     
-    @include('article.temp_student_article')
+    @include('article.template.student_article')
     
     
     

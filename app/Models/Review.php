@@ -42,4 +42,13 @@ class Review extends Model
     //ここにリレーションを追加
     
     
+    
+    
+    protected $fillable = [
+        'student_id',
+        'teacher_article_id',
+        'score',
+        'body',
+        'attendance',
+    ];
 }
