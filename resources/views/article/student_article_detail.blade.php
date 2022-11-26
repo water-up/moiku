@@ -2,15 +2,16 @@
 
 @section('content')
     
-    @include('article.temp_student_article')
+    @include('article.template.student_article')
     
     
-    <!-- 立候補ボタン -->
+    <!-- teacherでログインしている場合 ->> "立候補ボタンを表示" -->
     @if (Auth::guard('teacher')->check() && !$check_reaction)
-    <input type="button" onclick="location.href='/article/student_article/{{ $student_article->id }}/reaction'" value="立候補する">
+        @include('article.template.reaction_form')
     @endif
     
-    @include('article.temp_reaction_list')
+    <!-- 立候補者リスト -->
+    @include('article.template.reaction_list')
     
     <div class="footer">
         <a href="/article/student_article">戻る</a>

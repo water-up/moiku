@@ -11,6 +11,7 @@ use App\Models\Student_article_good;
 use App\Models\Teacher_article_good;
 use App\Models\Teacher;
 use App\Models\Teacher_reaction;
+use App\Models\Review;
 use DateTime;
 
 //use App\Models\Teacher_article;
@@ -44,28 +45,18 @@ class LogController extends Controller
             
         //ユーザーの過去の授業==================================================
         //reviewしていない授業
-        $not_reviewed_articles =
+        $past_articles =
             Teacher::find(\Auth::user()->id)->teacher_articles()
             ->where('date','<=',new DateTime())
-            ->whereDoesntHave('reviews', function ($query) {
-                $query->where('teacher_id', \Auth::user()->id);})
             ->get();
             
-        //reviewした授業
-        $reviewed_articles =
-            Teacher::find(\Auth::user()->id)->teacher_articles()
-            ->where('date','<=',new DateTime())
-            ->whereHas('reviews', function ($query) {
-                $query->where('teacher_id', \Auth::user()->id);})
-            ->get();
             
             
         return view('mypage/teacher/log')
         ->with(['projecting_articles' => $projecting_articles,
                 'matched_articles' => $matched_articles,
                 'my_articles' => $my_articles,
-                'not_reviewed_articles' => $not_reviewed_articles,
-                'reviewed_articles' => $reviewed_articles]);
+                'past_articles' => $past_articles]);
     }
     
     public function showTeacherArticleDetail(Teacher_article $teacher_article)
@@ -79,11 +70,26 @@ class LogController extends Controller
         //teacher_article_goodsテーブル内を検索
         $check_good = $teacher_article->teacher_article_goods()->where('teacher_id',\Auth::guard('teacher')->user()->id)->exists();
         
+        //日付チェック
+        if($teacher_article->date > new DateTime()){
+            $check_date = true;
+        }
+        else{
+            $check_date = false;
+        }
+        
+        $reviews = $teacher_article->reviews()->get();
+        
+        $average = $reviews->avg('score');
+        
         
         return view('mypage/teacher/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
                 'participants' => $participants,
-                'check_good' => $check_good]);
+                'check_good' => $check_good,
+                'check_date' => $check_date,
+                'reviews' => $reviews,
+                'average' => $average]);
     }
     
     public function showStudentArticleDetail(Student_article $student_article)

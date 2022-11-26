@@ -11,6 +11,7 @@ use App\Models\Teacher_article;
 use App\Models\Student_article_good;
 use App\Models\Teacher_article_good;
 use App\Models\Teacher_reaction;
+use App\Models\Review;
 use DateTime;
 
 //use App\Models\Teacher_article;
@@ -97,12 +98,31 @@ class LogController extends Controller
         //参加チェック
         $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
         
+        //日付チェック
+        if($teacher_article->date > new DateTime()){
+            $check_date = true;
+        }
+        else{
+            $check_date = false;
+        }
+        
+        //レビューチェック
+        $check_review = $teacher_article->reviews()->where('student_id',\Auth::guard('student')->user()->id)->exists();
+        
+        $reviews = $teacher_article->reviews()->get();
+        
+        $average = $reviews->avg('score');
+        
         
         return view('mypage/student/teacher_article_detail')
         ->with(['teacher_article' => $teacher_article,
                 'participants' => $participants,
                 'check_good' => $check_good,
-                'check_join' => $check_join]);
+                'check_join' => $check_join,
+                'check_date' => $check_date,
+                'check_review' => $check_review,
+                'reviews' => $reviews,
+                'average' => $average,]);
     }
     
     public function showStudentArticleDetail(Student_article $student_article)

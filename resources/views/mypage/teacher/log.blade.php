@@ -98,41 +98,21 @@
         @endforeach
     </div>
     
-    <div class='not_reviewed_articles'>
+    <div class='past_articles'>
         <h3 align="center">過去の授業</h3>
         
-        @foreach ($not_reviewed_articles as $not_reviewed_article)
-            <div class='not_reviewed_article'>
+        @foreach ($past_articles as $past_article)
+            <div class='past_article'>
                 <h4 class='title'>
-                    <a href="/mypage/teacher/log/teacher_article/{{ $not_reviewed_article->id }}">{{ $not_reviewed_article->title }}</a>
+                    <a href="/mypage/teacher/log/teacher_article/{{ $past_article->id }}">{{ $past_article->title }}</a>
                 </h4>
                 <h5 class='content'>
-                    <p class='place'>場所：{{ $not_reviewed_article->prefecture->name }} {{ $not_reviewed_article->place }}</p>
-                    <p class='fee'>授業料：{{ $not_reviewed_article->fee }} 円</p>
-                    <p class='date'>日程：{{ $not_reviewed_article->date }}</p>
-                    <p class='teacher'>教え隊：{{ $not_reviewed_article->teacher->name }}</p>
-                    <p class='body'>コメント：{{ $not_reviewed_article->body }}</p>
-                    <p class='goods'>いいね：{{ $not_reviewed_article->teacher_article_goods()->count() }}</p>
-                    
-                    <p class='info'><mark>出欠登録を行なってください。</mark></p>
-                </h5>
-            </div>
-        @endforeach
-        
-        @foreach ($reviewed_articles as $reviewed_article)
-            <div class='reviewed_article'>
-                <h4 class='title'>
-                    <a href="/mypage/teacher/log/teacher_article/{{ $reviewed_article->id }}">{{ $reviewed_article->title }}</a>
-                </h4>
-                <h5 class='content'>
-                    <p class='place'>場所：{{ $reviewed_article->prefecture->name }} {{ $reviewed_article->place }}</p>
-                    <p class='fee'>授業料：{{ $reviewed_article->fee }} 円</p>
-                    <p class='date'>日程：{{ $reviewed_article->date }}</p>
-                    <p class='teacher'>教え隊：{{ $reviewed_article->teacher->name }}</p>
-                    <p class='body'>コメント：{{ $reviewed_article->body }}</p>
-                    <p class='goods'>いいね：{{ $reviewed_article->teacher_article_goods()->count() }}</p>
-                    
-                    <p class='info'>出欠登録済みです。</p>
+                    <p class='place'>場所：{{ $past_article->prefecture->name }} {{ $past_article->place }}</p>
+                    <p class='fee'>授業料：{{ $past_article->fee }} 円</p>
+                    <p class='date'>日程：{{ $past_article->date }}</p>
+                    <p class='teacher'>教え隊：{{ $past_article->teacher->name }}</p>
+                    <p class='body'>コメント：{{ $past_article->body }}</p>
+                    <p class='goods'>いいね：{{ $past_article->teacher_article_goods()->count() }}</p>
                 </h5>
             </div>
         @endforeach
