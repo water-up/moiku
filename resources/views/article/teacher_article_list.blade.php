@@ -23,4 +23,8 @@
         @endforeach
     </div>
     
+    <div class='paginate'>
+        {{ $teacher_articles->links() }}
+    </div>
+    
 @endsection

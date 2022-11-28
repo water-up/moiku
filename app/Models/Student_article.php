@@ -8,6 +8,14 @@ use Database\Factories\Student_articleFactory;
 
 class Student_article extends Model
 {
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->doesntHave('teacher_article')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    
+    
     use HasFactory;
     
     protected static function newFactory()

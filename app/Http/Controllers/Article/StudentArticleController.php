@@ -13,14 +13,11 @@ use DateTime;
 
 class StudentArticleController extends GoodController
 {
-    public function showList()
+    public function showList(Student_article $student_articles)
     {
-        $student_articles = 
-            Student_article::doesntHave('teacher_article')
-            ->get();
         
         return view('article/student_article_list')
-        ->with(['student_articles' => $student_articles]);
+        ->with(['student_articles' => $student_articles->getPaginateByLimit()]);
     }
     
     public function showDetail(Student_article $student_article)
