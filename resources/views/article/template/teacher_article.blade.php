@@ -14,7 +14,7 @@
 <!-- いいね機能 -->
 <p class='goods'>
     @if ($check_good)  <!-- いいね済みの場合 -->
-        <input disabled type="submit" value="いいね"/>
+        <button type="submit" class="btn btn-sm btn-primary" disabled>いいね</button>
         
     @else <!-- いいねしていないの場合 -->
         @if (Auth::guard('student')->check())

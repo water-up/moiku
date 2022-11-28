@@ -10,14 +10,11 @@ use DateTime;
 
 class TeacherArticleController extends GoodController
 {
-    public function showList()
+    public function showList(Teacher_article $teacher_articles)
     {
-        $teacher_articles = 
-            Teacher_article::where('date','>',new DateTime())
-            ->get();
             
         return view('article/teacher_article_list')
-        ->with(['teacher_articles' => $teacher_articles]);
+        ->with(['teacher_articles' => $teacher_articles->getPaginateByLimit()]);
     }
     
     public function showDetail(Teacher_article $teacher_article)
