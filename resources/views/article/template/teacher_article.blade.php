@@ -14,17 +14,17 @@
 <!-- いいね機能 -->
 <p class='goods'>
     @if ($check_good)  <!-- いいね済みの場合 -->
-        <button type="submit" class="btn btn-sm btn-primary" disabled>いいね</button>
+        <button type="submit" class="btn btn-sm btn-info" disabled>いいね</button>
         
     @else <!-- いいねしていないの場合 -->
         @if (Auth::guard('student')->check())
             <form action="/student_good/teacher_article/{{ $teacher_article->id }}" method="POST">
                 @csrf
-            <input type="submit" value="いいね"/>
+            <button type="submit" class="btn btn-outline-info btn-sm">いいね</button>
         @elseif (Auth::guard('teacher')->check())
             <form action="/teacher_good/teacher_article/{{ $teacher_article->id }}" method="POST">
                 @csrf
-            <input type="submit" value="いいね"/>
+            <button type="submit" class="btn btn-outline-info btn-sm">いいね</button>
         @else
             いいね
         @endif

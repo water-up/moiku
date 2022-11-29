@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+/*========= listためのCSS ===============*/
+/*丸がボタンに変形する*/
+
+/*丸がボタンに変形する*/
+
+.btntransform{
+    /*丸の基点とするためrelativeを指定*/
+	position: relative;
+    /*ボタンの形状*/	
+    display: inline-block;
+    font-size:1.6rem;
+	padding:0 0 0 15px;
+	line-height: 50px;
+    color: #333;
+    text-decoration: none;
+    outline: none;
+    margin: 0px 0 10px 0;
+}
+
+/* 丸が動く */
+.btntransform::before{
+	content:'';
+    /*絶対配置で丸の位置を決める*/
+	position:absolute;
+	left:0;
+	z-index: -1;
+    /*丸の形状*/
+	width:50px;
+	height:50px;
+	background:#69c;
+	border-radius:25px;
+    /*アニメーションの指定*/
+    transition:.3s ease-out;
+}
+
+/*hoverした際の形状*/
+.btntransform:hover::before{
+	width:300px;
+}
+
+/* 矢印の形状 */
+.btntransform::after{
+	position: absolute;
+    content: '';
+    top: 1.3em;
+    right: -15px;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    transform: rotate(45deg);
+}
+
+
+
+.articles{
+  color: #1e366a;
+  border-top: solid #1e366a 2px;/*上のボーダー*/
+  padding: 0.5em 0 0.5em 0em;
+  
+  margin: 0px 150px 50px 0px;
+}
+
+.article {
+  
+  background: #eee;/*灰色に*/
+  border-radius :8px;
+  padding: 1em 1em 1em 2em;
+  
+  margin: 10px 0px 20px 0px;
+}
+
+.new-post{
+  font-size:1.5rem;
+  margin: 0 0 30px 0;
+}
+
+
+
+.detail_link a {
+  font-weight:bold;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  color:#369
+}
+.detail_link a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 0;
+  height: 1px;/*下線の太さ*/
+  background-color:#69c;/*下線の色*/
+  transition: .3s;
+}
+.detail_link a:hover::after {
+  width: 100%;
+}
+.detail_link a:hover{
+  color:#69c;/*ホバー時の文字色*/
+}
+
+
+.article_content{
+  color:#111;
+}
