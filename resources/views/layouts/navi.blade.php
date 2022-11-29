@@ -1,32 +1,75 @@
 @extends('layouts.app')
 
 @section('nav')
-    <h1 align="center">{{ Auth::user()->name }} さんのマイページ</h1>
+
     
-    <nav class=side-nav >
-        @if (Auth::guard('student')->check())
-            <h5>マイページ目次</h5>
+    
+    
+<div id="container">
+    
+    
+    <header id="header">
+        <h1>Moiku</h1>
+        
+        <nav>
             <ul>
-                <li><a href='/mypage/student/log'>授業管理</a></li>
-                <li><a href='/mypage/student/chat'>チャット</a></li>
-                <li><a href='/mypage/student/profile'>プロフィール</a></li>
-                <li><a href='/mypage/student/guide'>Moikuについて</a></li>
+                @if (Auth::guard('student')->check())
+                <li class="side-li"><a href="{{ url('student/home') }}">Top</a></li>
+                @elseif (Auth::guard('teacher')->check())
+                <li class="side-li"><a href="{{ url('teacher/home') }}">Top</a></li>
+                @endif
+                
+                @if (Auth::guard('student')->check())
+                <li class="has-child"><a href="#">MyPage</a><!--子要素を持つ li にはhas-childというクラス名をつける-->
+                    <ul class="side-mypage">
+                        <li class="side-mypage"><a href='/mypage/student/log'>授業管理</a></li>
+                        <li class="side-mypage"><a href='/mypage/student/profile'>プロフィール</a></li>
+                        <li class="side-mypage"><a href='/mypage/student/chat'>チャット</a></li>
+                    </ul>
+                </li>
+                @elseif (Auth::guard('teacher')->check())
+                <li class="has-child"><a href="#">MyPage</a><!--子要素を持つ li にはhas-childというクラス名をつける-->
+                    <ul class="side-mypage">
+                        <li class="side-mypage"><a href='/mypage/teacher/log'>授業管理</a></li>
+                        <li class="side-mypage"><a href='/mypage/teacher/profile'>プロフィール</a></li>
+                        <li class="side-mypage"><a href='/mypage/teacher/chat'>チャット</a></li>
+                    </ul>
+                </li>
+                @endif
+                
+                <li class="has-child"><a href="#">掲示板</a>
+                    <ul>
+                        <li class="side-teacher-article"><a href='/article/teacher_article'>学び隊募集掲示板へ</a></li>
+                        <li class="side-student-article"><a href='/article/student_article'>教え隊募集掲示板へ</a></li>
+                    </ul>
+                </li>
+                
+                <li class="side-li"><a href='/guide'>Moikuについて</a></li>
             </ul>
-        @elseif (Auth::guard('teacher')->check())
-            <h5>マイページ目次</h5>
-            <ul>
-                <li><a href='/mypage/teacher/log'>授業管理</a></li>
-                <li><a href='/mypage/teacher/chat'>チャット</a></li>
-                <li><a href='/mypage/teacher/profile'>プロフィール</a></li>
-                <li><a href='/mypage/teacher/guide'>Moikuについて</a></li>
-            </ul>
-        @endif
+        </nav>
+        
+    </header>
+    
+    
+    
+    
+    <main id="main-area">
+        
+        @if(Request::is('mypage/*'))
+            <h1>{{ Auth::user()->name }} さんのMyPage</h1>
             
-        <h5>掲示板</h5>
-        <ul>
-            <li><a href='/article/teacher_article'>学び隊募集掲示板へ</a></li>
-            <li><a href='/article/student_article'>教え隊募集掲示板へ</a></li>
-        </ul>
-    </nav>
+        @elseif (Request::is('article/student_article*'))
+            <h1>教え隊募集掲示板</h1>
+            
+        @elseif (Request::is('article/teacher_article*'))
+            <h1>学び隊募集掲示板</h1>
+        @endif
+        
+        
+    @yield('content')
+    
+    </main>
+    
+</div>
 
 @endsection

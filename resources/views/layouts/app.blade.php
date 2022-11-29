@@ -15,112 +15,122 @@
     
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="/css/list.css">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                @if (Auth::guard('student')->check())
-                    <a class="navbar-brand" href="{{ url('student/home') }}">
+    <div class="container-body">
+    
+        <div id="app">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <div class="container">
+                    @if (Auth::guard('student')->check())
+                        <a class="navbar-brand" href="{{ url('student/home') }}">
+                                {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @elseif (Auth::guard('teacher')->check())
+                        <a class="navbar-brand" href="{{ url('teacher/home') }}">
+                                {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
                             {{ config('app.name', 'Laravel') }}
-                    </a>
-                @elseif (Auth::guard('teacher')->check())
-                    <a class="navbar-brand" href="{{ url('teacher/home') }}">
-                            {{ config('app.name', 'Laravel') }}
-                    </a>
-                @else
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                @endif
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @if (Auth::guard('student')->check())
-                            <li class="nav-item dropdown">
-                                <p>学び隊でログイン中</p>
-                                
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::guard('student')->user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href='/mypage/student/log' >
-                                        マイページへ
-                                    </a>
+                        </a>
+                    @endif
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav me-auto">
+    
+                        </ul>
+    
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                            @if (Auth::guard('student')->check())
+                                <li class="nav-item dropdown">
+                                    <p>学び隊でログイン中</p>
                                     
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::guard('student')->user()->name }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @elseif (Auth::guard('teacher')->check())
-                            <li class="nav-item dropdown">
-                                <p>教え隊でログイン中</p>
-                                
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::guard('teacher')->user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href='/mypage/teacher/log' >
-                                        マイページへ
-                                    </a>
-                                    
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @elseif (auth()->guest())
-                            @if (Request::is('article/teacher_article*') || Request::is('student/*'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('student/login') }}">{{ __('Login') }}</a>
-                                    <a class="nav-link" href="{{ url('student/register') }}">{{ __('Register') }}</a>
+    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href='/mypage/student/log' >
+                                            マイページへ
+                                        </a>
+                                        
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </li>
-                            @elseif (Request::is('article/student_article*') || Request::is('teacher/*'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('teacher/login') }}">{{ __('Login') }}</a>
-                                    <a class="nav-link" href="{{ url('teacher/register') }}">{{ __('Register') }}</a>
+                            @elseif (Auth::guard('teacher')->check())
+                                <li class="nav-item dropdown">
+                                    <p>教え隊でログイン中</p>
+                                    
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::guard('teacher')->user()->name }}
+                                    </a>
+    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href='/mypage/teacher/log' >
+                                            マイページへ
+                                        </a>
+                                        
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </li>
+                            @elseif (auth()->guest())
+                                @if (Request::is('article/teacher_article*') || Request::is('student/*'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('student/login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link" href="{{ url('student/register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @elseif (Request::is('article/student_article*') || Request::is('teacher/*'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('teacher/login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link" href="{{ url('teacher/register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
                             @endif
-                        @endif
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        
-        <div>
-            @yield('nav')
+            </nav>
         </div>
+    
+    
+        @yield('login-form')
         
-        <main class="main">
-            @yield('content')
-        </main>
+        
+        @yield('nav')
+        
+        <footer id="footer">
+            <small>&copy; 2023 Moiku .</small>  
+        </footer>
         
     </div>
+    
 </body>
 </html>

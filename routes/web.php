@@ -84,11 +84,8 @@ Route::middleware('auth:teacher')->group(function(){
 });
 
 
-//-----Moikuについて------------------------------
-//生徒
-Route::view('/mypage/student/guide', 'mypage/guide')->middleware('auth:student');
-//先生
-Route::view('/mypage/teacher/guide', 'mypage/guide')->middleware('auth:teacher');
+//=====Moikuについて============================================================
+Route::view('/guide', 'guide');
 
 
 
