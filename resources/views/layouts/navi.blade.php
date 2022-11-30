@@ -56,13 +56,13 @@
     <main id="main-area">
         
         @if(Request::is('mypage/*'))
-            <h1>{{ Auth::user()->name }} さんのMyPage</h1>
+            <h2 class="inline-block_test">{{ Auth::user()->name }} さんのMyPage</h2>
             
         @elseif (Request::is('article/student_article*'))
-            <h1>教え隊募集掲示板</h1>
+            <h2 class="inline-block_test">教え隊募集掲示板</h2>
             
         @elseif (Request::is('article/teacher_article*'))
-            <h1>学び隊募集掲示板</h1>
+            <h2 class="inline-block_test">学び隊募集掲示板</h2>
         @endif
         
         

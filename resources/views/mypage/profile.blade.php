@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <h2 align="center">プロフィール</h2>
+    <h2 class="inline-block_test">　>>　プロフィール</h2>
 
     {{-- アイコン画像 --}}
     <div class="icon">

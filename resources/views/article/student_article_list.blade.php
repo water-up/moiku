@@ -2,22 +2,21 @@
 
 @section('content')
     
-    <div class='student_articles'>
+    <div class='articles'>
+        <!-- 生徒の投稿 -->
         @foreach ($student_articles as $student_article)
-            <div class='student_article'>
-                <h4 class='title'>
+            <div class='article'>
+                <h4 class="detail_link">
                     <a href="/article/student_article/{{ $student_article->id }}">{{ $student_article->title }}</a>
                 </h4>
-                <h5 class='content'>
-                    <p class='place'>場所：{{ $student_article->prefecture->name }} {{ $student_article->place }}</p>
-                    <p class='desered_fee'>授業料：{{ $student_article->desered_fee }}</p>
-                    <p class='desered_date'>日程：{{ $student_article->desered_date }}</p>
-                    <p class='body'>コメント：{{ $student_article->body }}</p>
-                </h5>
-            </div>
-            
-            <div class='goods'>
-                <p class='goods'>いいね：{{ $student_article->student_article_goods()->count() }}</p>
+                
+                <div class='article_content'>
+                    <p>場所：{{ $student_article->prefecture->name }} {{ $student_article->place }}</p>
+                    <p>授業料：{{ $student_article->desered_fee }}</p>
+                    <p>日程：{{ $student_article->desered_date }}</p>
+                    <p>コメント：{{ $student_article->body }}</p>
+                    <p class='goods'>いいね：{{ $student_article->student_article_goods()->count() }}</p>
+                </div>
             </div>
         @endforeach
     </div>

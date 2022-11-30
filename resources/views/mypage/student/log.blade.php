@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2>授業管理</h2>
+    <h2 class="inline-block_test">　>>　授業管理</h2>
     
     <h3 class='new-post'>
         <a href="/mypage/student/log/post" class="btntransform">新しい投稿を作成する</a>

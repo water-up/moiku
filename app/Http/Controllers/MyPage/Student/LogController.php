@@ -99,7 +99,7 @@ class LogController extends Controller
         $check_join = $teacher_article->students()->where('student_id',\Auth::guard('student')->user()->id)->exists();
         
         //日付チェック
-        if($teacher_article->date > new DateTime()){
+        if($teacher_article->date < new DateTime()){
             $check_date = true;
         }
         else{

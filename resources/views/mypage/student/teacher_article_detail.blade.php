@@ -4,7 +4,6 @@
 
     @include('article.template.teacher_article')
     
-    
     @if($check_date)
         <!-- まだ授業が行われていない場合 ->> "参加確認ボタン&参加者リストを表示" -->
         @include('article.template.join_button')
