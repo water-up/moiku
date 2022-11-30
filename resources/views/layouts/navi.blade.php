@@ -8,11 +8,11 @@
 <div id="container">
     
     
-    <header id="header">
-        <h1>Moiku</h1>
-        
+    <header class="shadow" id="header">
         <nav>
             <ul>
+                <h2 class="nav_title">Moiku</h2>
+                
                 @if (Auth::guard('student')->check())
                 <li class="side-li"><a href="{{ url('student/home') }}">Top</a></li>
                 @elseif (Auth::guard('teacher')->check())

@@ -1,11 +1,60 @@
 @charset "utf-8";
 
+/*========= ヘッダーのためのCSS ===============*/
+
+.header-bar{
+  margin: 0px 0 20px 0;
+}
+
+#header_img {
+  width: 50px;
+  height: 50px;
+  margin: 0 30px 0 0px;
+}
+
+.navbar-brand{
+  font-size:2.5rem;
+  text-shadow: 0.4px 0.4px 0.5px #808080;
+  color:#e58c4d;
+  
+  line-height: 0.8;
+  margin: 0px 0 0px 0;
+}
+
+.navbar-brand:hover{
+  color:#e59768;
+}
+
+.emphasis{
+  text-emphasis: dot #286181;
+ -webkit-text-emphasis: dot #286181;
+}
+
+.navbar-brand-sub{
+  font-size:0.8rem;
+  color:#286181;
+  text-shadow: 0.2px 0.2px 0.3px #808080;
+  
+  line-height: 2.0;
+}
+
+.navbar-brand-sub2{
+  font-size: 0.95rem;
+  color:#286181;
+  text-shadow: 0.2px 0.2px 0.3px #808080;
+  
+  margin: 30px 0px 0 -50px;
+}
+
+
+
+
+
 /*========= ナビゲーションドロップダウンのためのCSS ===============*/
 
 /*==ナビゲーション全体の設定*/
 nav ul{
   list-style: none;
-  text-align: center;
 }
 
 
@@ -153,6 +202,10 @@ footer{
   margin: 30px 0 30px 0;
 }
 
+.nav_title{
+  margin:30px 30px 20px 0;
+}
+
 #container{
   display: flex;
   justify-content: space-between;
@@ -161,12 +214,15 @@ footer{
 }
 
 #header{
-  width:17%;
-  background:#dddddd;
+  width:15%;
+  background:#f2f2f2;
+  
+  margin: 30px 30px 0px 50px;
 }
 
 #main-area{
-  width:78%;
+  
+  width:75%;
 }
 
 @media screen and (max-width:768px){
@@ -174,46 +230,8 @@ footer{
 #main-area{
   width:100%;
 
+}
+  
 } 
-}
 
 
-h1{
-  font-size:2rem;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 20px;
-}
-
-h2{
-  font-size:1.5rem;
-  text-align: center;
-  margin: 0 0 30px 0;
-}
-
-h3{
-  font-weight:bold;
-  font-size:1.2rem;
-  margin: 0 0 0px 0;
-}
-
-p{
-  margin: 10px 0 5px 0;
-}
-
-small{
-  background:#333;
-  color:#fff;
-  display: block;
-  text-align: center;
-  padding:20px;
-}
-
-
-section{
-  padding:30px;
-}
-
-a{
-  text-decoration: none;
-}
