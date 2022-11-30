@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <h2 align="center">Moikuについて</h2>
+    <h2 class="inline-block_test">Moikuについて</h2>
     
     <h3 align="center">Moikuの使い方</h3>
     

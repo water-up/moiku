@@ -1,4 +1,6 @@
 <!-- student_articleの詳細 -->
+<h2 class="inline-block_test">　>>　記事詳細</h2>
+
 <h1 class="title">
     {{ $student_article->title }}
 </h1>

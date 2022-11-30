@@ -6,7 +6,7 @@
     
     
     
-    <h2 align="center">新規投稿作成</h2>
+    <h2 class="inline-block_test">　>>　新規投稿作成</h2>
     
     <form action='/mypage/teacher/log/student_article/{{ $student_article->id }}/post' method="POST">
         @csrf

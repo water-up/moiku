@@ -17,6 +17,10 @@ h3{
   margin: 0 0 0px 0;
 }
 
+h5{
+  margin: 5px 0 0px 0;
+}
+
 p{
   line-height: 1.8;
   margin: 0px 0 0px 0;
@@ -41,4 +45,10 @@ a{
 
 body{
   background:#fff;
+}
+
+.inline-block_test{
+  font-size:2rem;
+  display: inline-block;
+  padding: 20px 0 0px 0;
 }

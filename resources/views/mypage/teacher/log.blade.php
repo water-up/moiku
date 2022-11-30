@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2>授業管理</h2>
+    <h2 class="inline-block_test">　>>　授業管理</h2>
     
     <h3>あなたが教える授業</h3>
     <div class='articles'>
