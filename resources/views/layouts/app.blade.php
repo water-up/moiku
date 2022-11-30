@@ -17,15 +17,20 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
     <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
     <link rel="stylesheet" type="text/css" href="/css/nav.css">
     <link rel="stylesheet" type="text/css" href="/css/list.css">
 </head>
 <body>
     <div class="container-body">
     
-        <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="header-bar" id="app">
+            <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container">
+                    <img class="shadow-sm" id="header_img" src="/images/icon.png">
+                    
+                    <div>
+                    <p class="navbar-brand-sub">"集団型"家庭教師マッチングサイト</p>
                     @if (Auth::guard('student')->check())
                         <a class="navbar-brand" href="{{ url('student/home') }}">
                                 {{ config('app.name', 'Laravel') }}
@@ -39,6 +44,9 @@
                             {{ config('app.name', 'Laravel') }}
                         </a>
                     @endif
+                    </div>
+                    
+                    <p class="navbar-brand-sub2">〜「私<span class="emphasis">も行く</span>！」で始まる授業〜</p>
                     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
