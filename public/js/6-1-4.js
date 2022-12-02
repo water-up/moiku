@@ -18,3 +18,6 @@ $('#slider').vegas({
 		animation: 'random',
 		slides: responsiveImage,
 	});
+	
+	
+
