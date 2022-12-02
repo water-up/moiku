@@ -22,21 +22,47 @@
 </head>
 <body>
 
-    <div class="wrapper">
-        <div id="slider">
-            <h1>あたらしい自分、きっと見つかる。</h1>
-        </div>
-    </div>
     
-    <div class="top-url">
-        <h3>
-            <a href="/student/login">学び隊としてログイン</a>
-            <a href="/teacher/login">教え隊としてログイン</a>
-            <br><br>
-            <a href='/article/teacher_article'>学び隊募集掲示板へ</a>
-            <a href='/article/student_article'>教え隊募集掲示板へ</a>
-        </h3>
-    </div>
+    
+    <header id="header">
+        
+        <div class="wrapper">
+            <div id="slider">
+                <h1>あたらしい自分、きっと見つかる。</h1>
+                
+                
+                
+                <div class="scrolldown4" id="scroll"><span>Scroll</span></div>
+            </div>
+        </div>
+    </header>
+    
+    <div id="container">
+        <div class="top-brand">
+            <img class="shadow-sm" id="top_img" src="/images/icon.png">
+            <div>
+                <p class="navbar-brand-sub">"集団授業"マッチングサービス</p>
+                <p class="brand-name">Moiku</p>
+            </div>
+            <p class="navbar-brand-sub2">〜「私<span class="emphasis">も行く</span>！」で始まる授業〜</p>
+        </div class="top-brand">
+        
+        
+        <div class="top-url">
+            <h3>
+                <a href="/student/login" class="btn-manabi"><span>学び隊としてログイン</span></a>
+                <a href="/teacher/login" class="btn-osie"><span>教え隊としてログイン</span></a>
+                <br>
+                <a href='/article/teacher_article' class="btnlinestretches5"><span>学び隊募集掲示板をのぞく</span></a>
+                <a href='/article/student_article' class="btnlinestretches5"><span>教え隊募集掲示板をのぞく</span></a>
+            </h3>
+        </div>
+    </div> 
+    
+    
+    
+    
+    
 
 
 

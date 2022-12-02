@@ -30,7 +30,7 @@
                     <img class="shadow-sm" id="header_img" src="/images/icon.png">
                     
                     <div>
-                    <p class="navbar-brand-sub">"集団型"家庭教師マッチングサイト</p>
+                    <p class="navbar-brand-sub">"集団授業"マッチングサービス</p>
                     @if (Auth::guard('student')->check())
                         <a class="navbar-brand" href="{{ url('student/home') }}">
                                 {{ config('app.name', 'Laravel') }}
