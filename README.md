@@ -48,5 +48,6 @@
 そこで、そんな生徒側と先生側の理想を実現するためのマッチングサービスをここに提案する。
 
 ## テストアカウント
-学び隊 ： student@test.com &nbsp;<!--半角スペース1個分-->　　教え隊 : teacher@test.com &nbsp;<!--半角スペース1個分-->　　パスワード : hogehoge
+学び隊 ： student@test.com &nbsp;<!--半角スペース1個分-->　　教え隊 : teacher@test.com &nbsp;<!--半角スペース1個分-->　　パスワード : hogehoge &nbsp;<!--半角スペース1個分--> (サイトのログイン画面にも記載)
 
+<br></br>
