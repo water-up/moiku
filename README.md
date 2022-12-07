@@ -1,17 +1,18 @@
-<h3 align="center">
+<p align="center">
 <a href="https://moiku-2022.herokuapp.com/">
-    <img src="./public/images/logo.png" alt="logo" title="Moiku" align="center" height="50" />
+    <img src="./public/images/logo.png" alt="logo" title="Moiku" align="center" height="120" />
 </a>
-&nbsp;<!--半角スペース1個分--> Moiku
-<br><br/>
-    
+</p>
+
+<h5 align="center">
+
 ![](https://img.shields.io/github/directory-file-count/water-up/moiku)
 ![](https://img.shields.io/website?url=https%3A%2F%2Fmoiku-2022.herokuapp.com%2F)
 ![](https://img.shields.io/github/watchers/water-up/moiku?style=social)
 &nbsp;<!--半角スペース1個分-->　Webサイトは
 <a href="https://moiku-2022.herokuapp.com/">こちら</a>
 から閲覧できます
-</h3>
+</h5>
 
 
 <!-- DOCUMENTATION -->
@@ -30,7 +31,7 @@
 
 
 ## 注力した機能や工夫した点
-[バックエンド] マルチログイン機能を実装したため、コードの記述量が増えたがViewの継承などを利用し可読性のあるコードを意識した。また、ログインしていない状でもも掲示板が閲覧できるようにし、初めて閲覧した人でも興味が持てる構成にした。　　　　
+[バックエンド] マルチログイン機能を実装したため、コードの記述量が増えたがBladeファイルやクラスの継承などを利用し、コードが重複しないよう意識した。また、ログインしていない状態でも掲示板が閲覧できるようにし、初めて閲覧した人でも興味が持てる構成にした。
 
 [フロントエンド] トップページにスライドショーを実装し、利用者が実際に授業をするイメージが湧きやすいようにした。また、機能が多くなりそうだったので直感的に操作が分かるUIを心掛けた。
 
