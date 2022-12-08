@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Moiku</title>
-
+    <link rel="icon" href="favicon.ico">
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -32,16 +33,16 @@
                     <div>
                     <p class="navbar-brand-sub">"集団授業"マッチングサービス</p>
                     @if (Auth::guard('student')->check())
-                        <a class="navbar-brand" href="{{ url('student/home') }}">
-                                {{ config('app.name', 'Laravel') }}
+                        <a class="navbar-brand" href="{{ url('/mypage/student/log') }}">
+                                {{ config('app.name', 'Moiku') }}
                         </a>
                     @elseif (Auth::guard('teacher')->check())
-                        <a class="navbar-brand" href="{{ url('teacher/home') }}">
-                                {{ config('app.name', 'Laravel') }}
+                        <a class="navbar-brand" href="{{ url('/mypage/teacher/log') }}">
+                                {{ config('app.name', 'Moiku') }}
                         </a>
                     @else
                         <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
+                            {{ config('app.name', 'Moiku') }}
                         </a>
                     @endif
                     </div>

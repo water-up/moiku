@@ -34,7 +34,6 @@ small{
   padding:20px;
 }
 
-
 section{
   padding:30px;
 }
@@ -51,4 +50,21 @@ body{
   font-size:2rem;
   display: inline-block;
   padding: 20px 0 0px 0;
+}
+
+.text{
+  line-height: 1.5;
+  margin: 0px 0 0px 0;
+}
+
+.headline{
+  padding: 20px 0px 5px 0;
+}
+
+.headline-info{
+  font-weight:bold;
+  font-size:1.5rem;
+  text-align:left;
+  padding: 20px 0px 5px 0;
+  margin: 0 0 0px 0;
 }
