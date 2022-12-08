@@ -28,13 +28,11 @@ Route::view('/student/login', 'student/login')->name('student.login');
 Route::post('/student/login', [App\Http\Controllers\student\LoginController::class, 'login']);
 Route::view('/student/register', 'student/register');
 Route::post('/student/register', [App\Http\Controllers\student\RegisterController::class, 'register']);
-Route::view('/student/home', 'student/home')->middleware('auth:student');
 //先生
 Route::view('/teacher/login', 'teacher/login')->name('teacher.login');
 Route::post('/teacher/login', [App\Http\Controllers\teacher\LoginController::class, 'login']);
 Route::view('/teacher/register', 'teacher/register');
 Route::post('/teacher/register', [App\Http\Controllers\teacher\RegisterController::class, 'register']);
-Route::view('/teacher/home', 'teacher/home')->middleware('auth:teacher');
 
 
 

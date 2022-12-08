@@ -66,8 +66,8 @@
         @endif
         
         
-    @yield('content')
-    
+        @yield('content')
+        
     </main>
     
 </div>
