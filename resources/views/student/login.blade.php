@@ -69,5 +69,18 @@
             </div>
         </div>
     </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">テストアカウント</h5>
+                    <p class="card-text">Email Address : student@test.com</p>
+                    <p class="card-text">Password : hogehoge</p>
+                    <p class="card-text"><br>テスト用にこちらのアカウントをお使いください。サイト内の機能なども試して頂いて構いませが、開発中なのでデータは定期的に更新されます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

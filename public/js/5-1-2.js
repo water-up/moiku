@@ -25,3 +25,4 @@ $(window).resize(function() {
 $(window).on('load',function(){
   mediaQueriesWin();/* ドロップダウンの関数を呼ぶ*/
 });
+

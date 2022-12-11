@@ -2,19 +2,25 @@
 
 @section('content')
     
-    @include('article.template.student_article')
-    
+    @if(Request::is('mypage/teacher/log/student_article/*'))
+        @include('article.template.student_article')
+    @endif
     
     
     <h2 class="inline-block_test">　>>　新規投稿作成</h2>
     
+    @if(Request::is('mypage/teacher/log/student_article/*'))
     <form action='/mypage/teacher/log/student_article/{{ $student_article->id }}/post' method="POST">
+    @else
+    <form action='/mypage/teacher/log/post' method="POST">
+    @endif
+        
         @csrf
         
         <div class="title">
             <label>
                 <h4>タイトル：</h4>
-                <input type="text" name="title" value="{{ old('title',$student_article->title) }}" />
+                <input type="text" name="title" value="{{ old('title',@$student_article->title) }}" />
                 <p class="title__error" style="color:red">{{ $errors->first('title') }}</p>
             </label>
         </div>
@@ -44,7 +50,7 @@
         <div class="place">
             <label>
                 <h4>場所：</h4>
-                <input type="text" name="place" value="{{ old('place',$student_article->place) }}" />
+                <input type="text" name="place" value="{{ old('place',@$student_article->place) }}" />
                 <p class="place__error" style="color:red">{{ $errors->first('place') }}</p>
             </label>
         </div>
@@ -104,9 +110,13 @@
         <input type="submit" value="投稿する"/>
     </form>
     
+    @if(Request::is('mypage/teacher/log/student_article/*'))
+        <div class="footer">
+            <a href="/mypage/teacher/log/student_article/{{ $student_article->id }}">戻る</a>
+        </div>
+    @else
+        <input type="button" onclick="location.href='/mypage/teacher/log'" value="戻る">
+    @endif
     
-    <div class="footer">
-        <a href="/mypage/teacher/log/student_article/{{ $student_article->id }}">戻る</a>
-    </div>
 @endsection
 
