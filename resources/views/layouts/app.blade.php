@@ -34,15 +34,15 @@
                     <p class="navbar-brand-sub">"集団授業"マッチングサービス</p>
                     @if (Auth::guard('student')->check())
                         <a class="navbar-brand" href="{{ url('/mypage/student/log') }}">
-                                {{ config('app.name', 'Moiku') }}
+                                Moiku
                         </a>
                     @elseif (Auth::guard('teacher')->check())
                         <a class="navbar-brand" href="{{ url('/mypage/teacher/log') }}">
-                                {{ config('app.name', 'Moiku') }}
+                                Moiku
                         </a>
                     @else
                         <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Moiku') }}
+                            Moiku
                         </a>
                     @endif
                     </div>
@@ -138,7 +138,10 @@
         @yield('nav')
         
         <footer id="footer">
-            <small>&copy; 2023 Moiku .</small>  
+            <small>
+                &copy; 2023 Moiku .<br>
+                24卒　就活ポートフォリオ用
+            </small>  
         </footer>
         
     </div>
