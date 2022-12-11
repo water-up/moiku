@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             
             $table->foreignId('teacher_id')->constrained()->comment('外部キー');
-            $table->foreignId('student_article_id')->constrained()->comment('外部キー');
+            $table->foreignId('student_article_id')->nullable()->constrained()->comment('外部キー');
             $table->foreignId('secondary_category_id')->constrained()->comment('外部キー');
             $table->foreignId('prefecture_id')->constrained()->comment('外部キー');
             
