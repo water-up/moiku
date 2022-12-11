@@ -22,5 +22,3 @@ $('#slider').vegas({
 		slides: responsiveImage,
 	});
 	
-	
-

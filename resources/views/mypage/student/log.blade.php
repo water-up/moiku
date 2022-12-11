@@ -5,7 +5,7 @@
     <h2 class="inline-block_test">　>>　授業管理</h2>
     
     <h3 class='new-post'>
-        <a href="/mypage/student/log/post" class="btntransform">新しい投稿を作成する</a>
+        <a href="/mypage/student/log/post" class="btntransform-manabi">新しい投稿を作成する</a>
     </h3>
     
     <h3>　参加している授業</h3>

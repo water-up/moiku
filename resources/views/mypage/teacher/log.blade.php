@@ -4,6 +4,10 @@
 
     <h2 class="inline-block_test">　>>　授業管理</h2>
     
+    <h3 class='new-post'>
+        <a href="/mypage/teacher/log/post" class="btntransform-osie">新しい投稿を作成する</a>
+    </h3>
+    
     <h3>あなたが教える授業</h3>
     <div class='articles'>
         <!-- 募集人数を満たしている投稿 -->

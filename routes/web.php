@@ -56,6 +56,8 @@ Route::middleware('auth:teacher')->group(function(){
     Route::get('/mypage/teacher/log/teacher_article/{teacher_article}', [App\Http\Controllers\MyPage\Teacher\LogController::class, 'showTeacherArticleDetail']);
     Route::get('/mypage/teacher/log/student_article/{student_article}/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'showPostArticle']);
     Route::post('/mypage/teacher/log/student_article/{student_article}/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'postArticle']);
+    Route::get('/mypage/teacher/log/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'showNewPostArticle']);
+    Route::post('/mypage/teacher/log/post', [App\Http\Controllers\MyPage\Teacher\PostController::class, 'postNewArticle']);
     
 });
 

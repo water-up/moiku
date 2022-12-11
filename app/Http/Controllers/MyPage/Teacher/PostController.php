@@ -47,4 +47,26 @@ class PostController extends Controller
         
         return redirect('/mypage/teacher/log');
     }
+    
+    
+    
+    public function showNewPostArticle()
+    {
+        $secondary_categories = Secondary_category::get();
+        $prefectures = Prefecture::get();
+        
+        return view('mypage/teacher/post_article')
+        ->with(['prefectures' => $prefectures,
+                'secondary_categories' => $secondary_categories]);
+    }
+    
+    public function postNewArticle(Request $request)
+    {
+        $teacher_article = new Teacher_article;
+        $teacher_article->teacher_id = \Auth::user()->id;
+        $teacher_article->student_article_id = null;
+        $teacher_article->fill($request->all())->save();
+        
+        return redirect('/mypage/teacher/log/teacher_article/' . $teacher_article->id);
+    }
 }

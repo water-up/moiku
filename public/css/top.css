@@ -189,8 +189,8 @@ h1{
 @keyframes arrowlong01{
     0%{width:0;opacity:0}
     20%{width:0;opacity:1}
-    80%{width:106%;opacity:1}
-    100%{width:106%;opacity:0}
+    80%{width:105%;opacity:1}
+    100%{width:105%;opacity:0}
 }
 
 @keyframes arrowlong02{
