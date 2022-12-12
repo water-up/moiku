@@ -21,11 +21,11 @@ class Teacher_articleFactory extends Factory
     public function definition()
     {
         return [
-            'teacher_id' => $this->faker->numberBetween($min = 1, $max = 30),
-            'student_article_id' => $this->faker->numberBetween($min = 1, $max = 30),
+            'teacher_id' => $this->faker->numberBetween($min = 1, $max = 20),
+            'student_article_id' => null,
             'secondary_category_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'prefecture_id' => $this->faker->numberBetween($min = 1, $max = 47),
-            'title' => $this->faker->realText($maxNbChars = 15, $indexSize = 5),
+            'title' => "サンプル投稿",
             'place' => $this->faker->city,
             'fee' => $this->faker->randomNumber($nbDigits = 4),
             'date' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years')->format('Y-m-d'),
@@ -33,7 +33,7 @@ class Teacher_articleFactory extends Factory
             'finish_time' => $this->faker->time($format = 'H:i', $min = '12:00'),
             'min_number' => $this->faker->numberBetween($min = 2, $max = 5),
             'max_number' => $this->faker->numberBetween($min = 6, $max = 10),
-            'body' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
+            'body' => "こちらはサンプル投稿です",
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
