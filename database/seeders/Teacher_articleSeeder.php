@@ -201,5 +201,7 @@ class Teacher_articleSeeder extends Seeder
                 ],
             ]
         );
+        
+        Teacher_article::factory(20)->create();
     }
 }
