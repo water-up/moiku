@@ -8,7 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Moiku</title>
-    <link rel="icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/images/android-chrome-192x192.png">
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
