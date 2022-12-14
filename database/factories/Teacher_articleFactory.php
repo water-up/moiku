@@ -17,7 +17,9 @@ class Teacher_articleFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Teacher_article::class;
-     
+    
+    private static int $sequence = 1;
+    
     public function definition()
     {
         return [
@@ -25,7 +27,7 @@ class Teacher_articleFactory extends Factory
             'student_article_id' => null,
             'secondary_category_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'prefecture_id' => $this->faker->numberBetween($min = 1, $max = 47),
-            'title' => "サンプル投稿",
+            'title' => "募集記事".self::$sequence++."(サンプル)",
             'place' => $this->faker->city,
             'fee' => $this->faker->randomNumber($nbDigits = 4),
             'date' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years')->format('Y-m-d'),
@@ -33,9 +35,12 @@ class Teacher_articleFactory extends Factory
             'finish_time' => $this->faker->time($format = 'H:i', $min = '12:00'),
             'min_number' => $this->faker->numberBetween($min = 2, $max = 5),
             'max_number' => $this->faker->numberBetween($min = 6, $max = 10),
-            'body' => "こちらはサンプル投稿です",
+            'body' => "こちらは自動生成された学び隊募集記事です。学び隊はこの募集記事に対して「参加する」ことができます。
+            募集記事の最低参加人数を満たすと授業が開催されます。教え隊は募集記事を、マイページから新規投稿することも可能ですし、学び隊のリクエストから投稿することも可能です（マッチングが必須）。",
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
+        
+        
     }
 }

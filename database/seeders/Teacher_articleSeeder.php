@@ -202,6 +202,13 @@ class Teacher_articleSeeder extends Seeder
             ]
         );
         
-        Teacher_article::factory(20)->create();
+        $students = Student::all();
+
+        Teacher_article::factory(40)->create()
+        ->each(function ($teacher_article) use ($students) {
+            $teacher_article->students()->attach(
+                $students->random(rand(1,3))->pluck('id')->toArray() // 1～3のstudentをteacher_articleにランダムに紐づけ
+            );
+        });
     }
 }

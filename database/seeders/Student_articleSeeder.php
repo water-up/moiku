@@ -309,5 +309,7 @@ class Student_articleSeeder extends Seeder
                 //ここに追加できます
             ]
         );
+        
+        Student_article::factory(30)->create();
     }
 }
