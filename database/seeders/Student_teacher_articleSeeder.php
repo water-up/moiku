@@ -36,7 +36,5 @@ class Student_teacher_articleSeeder extends Seeder
                 //ここに追加できます
             ]
         );
-        
-        //Student_teacher_article::factory(100)->create();
     }
 }
